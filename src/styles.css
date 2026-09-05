@@ -76,6 +76,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--ff-body);
   font-size: var(--fs-body);
@@ -83,6 +88,8 @@ body {
   color: var(--clr-white);
   background-color: var(--clr-navy);
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 a {
@@ -117,6 +124,13 @@ input, textarea {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1.15rem;
+  }
 }
 
 .section {
