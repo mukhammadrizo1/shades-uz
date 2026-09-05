@@ -491,6 +491,94 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     badge: { uz: 'Total Look', ru: 'Total Look', en: 'Total Look' }
   },
   {
+    id: 'flyers-mockup',
+    categoryKey: 'print',
+    title: {
+      uz: 'Reklama Flayerlari & Evro-Bukletlar',
+      ru: 'Рекламные Флаеры и Евробуклеты',
+      en: 'Promotional Flyers & Tri-Fold Brochures'
+    },
+    category: {
+      uz: 'Reklama Poligrafiyasi',
+      ru: 'Рекламная полиграфия',
+      en: 'Commercial Print'
+    },
+    image: 'assets/branded-flyers.jpg',
+    size: 'wide',
+    description: {
+      uz: 'Yorqin bo‘rli qog‘ozda chop etilgan 3 qatlamli evro-bukletlar va A5 formatdagi aksiyalar flayerlari.',
+      ru: 'Глянцевые евробуклеты в 3 сложения и яркие флаеры формата А5 для презентаций и выставок.',
+      en: 'Glossy tri-fold brochures and promotional A5 flyers with rich saturation and razor-sharp text.'
+    },
+    badge: { uz: 'Evro-Buklet', ru: 'Евробуклет', en: 'Tri-Fold' }
+  },
+  {
+    id: 'cap-mockup',
+    categoryKey: 'textile',
+    title: {
+      uz: 'SHADES Kashtali Brend Kepkalar',
+      ru: 'Фирменные Бейсболки с Вышивкой',
+      en: 'Custom Embroidered Baseball Caps'
+    },
+    category: {
+      uz: 'Bosh Kiyimlar',
+      ru: 'Головные уборы',
+      en: 'Headwear & Caps'
+    },
+    image: 'assets/branded-cap.jpg',
+    size: 'normal',
+    description: {
+      uz: 'To‘q ko‘k 100% paxtali premium kepkaga to‘q sariq qavariq 3D kashta (vishivka) tushirilgan namuna.',
+      ru: 'Плотный хлопковый твил с объемной 3D-вышивкой оранжевого логотипа SHADES на лобной части.',
+      en: 'Heavyweight cotton twill cap customized with tactile 3D puff embroidery and structured fit.'
+    },
+    badge: { uz: '3D Kashta', ru: '3D Вышивка', en: '3D Embroidery' }
+  },
+  {
+    id: 'badge-mockup',
+    categoryKey: 'souvenir',
+    title: {
+      uz: 'Korporativ Beyjik & Lenta To‘plami',
+      ru: 'Корпоративные Бейджи с Ланъярдом',
+      en: 'Executive Badge & Lanyard Kit'
+    },
+    category: {
+      uz: 'Aksessuarlar & Merch',
+      ru: 'Аксессуары и Мерч',
+      en: 'Corporate Accessories'
+    },
+    image: 'assets/branded-badge.jpg',
+    size: 'normal',
+    description: {
+      uz: 'Shaffof akril korpusli xodimlar beyjigi va logotip tushirilgan qulay to‘q ko‘k bo‘yin lentasi.',
+      ru: 'Акриловый бейдж с голографической защитой и брендированная лента на шею с металлическим карабином.',
+      en: 'Clear acrylic card holder paired with custom woven dark navy neck lanyard featuring vibrant logos.'
+    },
+    badge: { uz: 'Akril & Lenta', ru: 'Акрил и Лента', en: 'ID Badge Kit' }
+  },
+  {
+    id: 'calendar-mockup',
+    categoryKey: 'print',
+    title: {
+      uz: 'Ofis Stol Kalendari (Spiral Muqovali)',
+      ru: 'Фирменный Настольный Календарь',
+      en: 'Corporate Spiral Desk Calendar'
+    },
+    category: {
+      uz: 'Kalendarlar',
+      ru: 'Календарная продукция',
+      en: 'Desk Stationery'
+    },
+    image: 'assets/branded-calendar.jpg',
+    size: 'normal',
+    description: {
+      uz: 'Metall prujinali, qattiq taglikli, to‘q rangli sahifalar va to‘q sariq aksentli korporativ stol kalendari.',
+      ru: 'Перекидной настольный календарь на металлической пружине в фирменной темной стилистике с оранжевыми датами.',
+      en: 'Twin-wire bound tent desk calendar styled with deep navy sheets and bold pumpkin date grid highlights.'
+    },
+    badge: { uz: 'Stol Kalendari', ru: 'Настольный', en: 'Desk Calendar' }
+  },
+  {
     id: 'workshop-view',
     categoryKey: 'all',
     title: {
@@ -504,7 +592,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       en: 'In-House Studio'
     },
     image: 'assets/workshop.jpg',
-    size: 'wide',
+    size: 'normal',
     description: {
       uz: 'Zamonaviy Yaponiya va Germaniya uskunalarida buyurtmalarni aniq va o‘z vaqtida bajarish.',
       ru: 'Высокоточное японское и немецкое печатное оборудование для идеальных тиражей.',
