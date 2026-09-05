@@ -1,0 +1,55 @@
+<section class="section section--light" id="services">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">{{ ui.servicesSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.servicesSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.servicesSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <!-- 3-Column Luxury Bento Services Grid -->
+    <div class="services__grid">
+      <a
+        *ngFor="let item of services; let i = index"
+        [href]="getOrderLink(item)"
+        target="_blank"
+        rel="noopener"
+        class="service-card reveal"
+        [class]="'reveal-delay-' + ((i % 3) + 1)"
+      >
+        <!-- Card Top Bar -->
+        <div class="service-card__top">
+          <div class="service-card__icon">
+            <app-icon [name]="item.iconKey"></app-icon>
+          </div>
+          <div class="service-card__meta">
+            <span class="service-card__num">{{ item.number }}</span>
+            <span class="service-card__tag">{{ item.tag[ts.currentLang()] }}</span>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <h3 class="service-card__title">{{ item.title[ts.currentLang()] }}</h3>
+        <p class="service-card__desc">{{ item.shortDesc[ts.currentLang()] }}</p>
+
+        <!-- Feature Chips -->
+        <ul class="service-card__features">
+          <li *ngFor="let feat of item.features[ts.currentLang()].slice(0, 2)">
+            <app-icon name="checkCircle" class="feat-icon"></app-icon>
+            <span>{{ feat }}</span>
+          </li>
+        </ul>
+
+        <!-- Bottom Status Bar -->
+        <div class="service-card__bottom">
+          <div class="service-card__turnaround">
+            <app-icon name="clock"></app-icon>
+            <span>{{ item.turnaround[ts.currentLang()] }}</span>
+          </div>
+          <div class="service-card__arrow">
+            <app-icon name="arrowUpRight"></app-icon>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

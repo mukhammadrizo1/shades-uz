@@ -1,0 +1,32 @@
+<section class="section section--faq" id="faq">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">{{ ui.faqSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.faqSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.faqSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <!-- 2-Column Luxury FAQ Grid -->
+    <div class="faq__grid reveal">
+      <div 
+        *ngFor="let item of faqs; let i = index" 
+        class="faq__item"
+        [class.faq__item--open]="openIndex() === i"
+      >
+        <button 
+          type="button"
+          class="faq__trigger" 
+          (click)="toggle(i)"
+          [attr.aria-expanded]="openIndex() === i">
+          <span class="faq__question">{{ item.question[ts.currentLang()] }}</span>
+          <span class="faq__icon">
+            <app-icon name="chevronDown"></app-icon>
+          </span>
+        </button>
+        <div class="faq__content" [class.faq__content--open]="openIndex() === i">
+          <p class="faq__answer">{{ item.answer[ts.currentLang()] }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

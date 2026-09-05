@@ -1,0 +1,117 @@
+<!-- Header Top Bar -->
+<div class="nav__top">
+  <div class="nav__top-inner container">
+    <div class="nav__info">
+      <a [href]="'tel:' + contact.phoneRaw" class="nav__phone">
+        <app-icon name="phone"></app-icon>
+        <span>{{ contact.phone }}</span>
+      </a>
+      <span class="nav__hours">{{ contact.workingHours[ts.currentLang()] }}</span>
+    </div>
+
+    <div class="nav__top-right">
+      <!-- Language Switcher -->
+      <div class="lang-switcher" role="group" aria-label="Language Switcher">
+        <button 
+          *ngFor="let l of languages" 
+          type="button"
+          class="lang-btn" 
+          [class.is-active]="ts.currentLang() === l.code"
+          (click)="selectLang(l.code)">
+          {{ l.label }}
+        </button>
+      </div>
+
+      <div class="nav__socials">
+        <a [href]="contact.instagramUrl" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+          <app-icon name="instagram"></app-icon>
+        </a>
+        <a [href]="contact.telegramUrl" target="_blank" rel="noopener" aria-label="Telegram" class="social-link">
+          <app-icon name="send"></app-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header Main -->
+<header class="nav__main">
+  <div class="nav__main-inner container">
+    <a class="nav__logo" href="#hero" aria-label="SHADES Home">
+      <app-logo width="44" height="44"></app-logo>
+      <div class="nav__logo-text">
+        <span class="nav__brand-title">SHADES</span>
+        <span class="nav__brand-sub">PRINT STUDIO</span>
+      </div>
+    </a>
+
+    <nav class="nav__menu">
+      <a href="#services">{{ ui.nav.services[ts.currentLang()] }}</a>
+      <a href="#portfolio">{{ ui.nav.portfolio[ts.currentLang()] }}</a>
+      <a href="#process">{{ ui.nav.process[ts.currentLang()] }}</a>
+      <a href="#advantages">{{ ui.nav.advantages[ts.currentLang()] }}</a>
+      <a href="#faq">{{ ui.nav.faq[ts.currentLang()] }}</a>
+      <a href="#contact">{{ ui.nav.contact[ts.currentLang()] }}</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a [href]="contact.telegramUrl" target="_blank" rel="noopener" class="nav__cta btn btn--primary">
+        <app-icon name="send"></app-icon>
+        <span>{{ ui.nav.orderBtn[ts.currentLang()] }}</span>
+        <app-icon name="arrowUpRight" class="cta-arrow"></app-icon>
+      </a>
+
+      <button class="nav__burger" type="button" aria-label="Menu" (click)="toggleDrawer()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer" [class.is-open]="drawerOpen()">
+  <div class="drawer__backdrop" (click)="closeDrawer()"></div>
+  <aside class="drawer__panel">
+    <div class="drawer__head">
+      <div class="drawer__logo-wrap">
+        <app-logo width="38" height="38"></app-logo>
+        <span class="drawer__brand-title">SHADES</span>
+      </div>
+      <button class="drawer__close" type="button" aria-label="Close" (click)="closeDrawer()">
+        <app-icon name="close"></app-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Lang Switcher -->
+    <div class="drawer__lang">
+      <button 
+        *ngFor="let l of languages" 
+        type="button"
+        class="lang-btn" 
+        [class.is-active]="ts.currentLang() === l.code"
+        (click)="selectLang(l.code)">
+        {{ l.label }}
+      </button>
+    </div>
+
+    <nav class="drawer__nav">
+      <a href="#services" (click)="closeDrawer()">{{ ui.nav.services[ts.currentLang()] }}</a>
+      <a href="#portfolio" (click)="closeDrawer()">{{ ui.nav.portfolio[ts.currentLang()] }}</a>
+      <a href="#process" (click)="closeDrawer()">{{ ui.nav.process[ts.currentLang()] }}</a>
+      <a href="#advantages" (click)="closeDrawer()">{{ ui.nav.advantages[ts.currentLang()] }}</a>
+      <a href="#faq" (click)="closeDrawer()">{{ ui.nav.faq[ts.currentLang()] }}</a>
+      <a href="#contact" (click)="closeDrawer()">{{ ui.nav.contact[ts.currentLang()] }}</a>
+    </nav>
+
+    <div class="drawer__footer">
+      <a [href]="contact.telegramUrl" target="_blank" rel="noopener" class="btn btn--primary drawer__cta">
+        <app-icon name="send"></app-icon>
+        <span>{{ ui.nav.orderBtn[ts.currentLang()] }}</span>
+      </a>
+      <a [href]="'tel:' + contact.phoneRaw" class="drawer__phone">
+        <app-icon name="phone"></app-icon>
+        <span>{{ contact.phone }}</span>
+      </a>
+    </div>
+  </aside>
+</div>

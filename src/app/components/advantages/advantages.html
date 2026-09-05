@@ -1,0 +1,41 @@
+<section class="section" id="advantages">
+  <div class="container">
+    <div class="section__head section__head--center reveal">
+      <p class="section__eyebrow">{{ ui.advantagesSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.advantagesSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.advantagesSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <div class="adv__layout">
+      <!-- Left: Advantages -->
+      <ul class="adv__bullets">
+        <li class="reveal" *ngFor="let adv of advantages; let i = index" [class]="'reveal-delay-' + (i + 1)">
+          <span class="adv__check" aria-hidden="true">
+            <app-icon [name]="adv.iconKey"></app-icon>
+          </span>
+          <div>
+            <h4>{{ adv.title[ts.currentLang()] }}</h4>
+            <p>{{ adv.desc[ts.currentLang()] }}</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Center: Vector SVG Logo -->
+      <div class="adv__center reveal">
+        <div class="adv__logo">
+          <app-logo width="140" height="140"></app-logo>
+          <div class="adv__logo-brand">SHADES</div>
+          <div class="adv__logo-tag">PREMIUM PRINT</div>
+        </div>
+      </div>
+
+      <!-- Right: Stats -->
+      <ul class="adv__stats reveal">
+        <li *ngFor="let stat of stats">
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.label[ts.currentLang()] }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

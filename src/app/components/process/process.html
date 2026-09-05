@@ -1,0 +1,23 @@
+<section class="section section--light" id="process">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">{{ ui.processSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.processSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.processSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <div class="process__line">
+      <div class="step reveal" *ngFor="let step of steps; let i = index" [class]="'reveal-delay-' + (i + 1)">
+        <div class="step__top">
+          <span class="step__num">{{ step.step }}</span>
+          <span class="step__duration">{{ step.duration[ts.currentLang()] }}</span>
+        </div>
+        <div class="step__icon-box">
+          <app-icon [name]="step.iconKey"></app-icon>
+        </div>
+        <h3 class="step__title">{{ step.title[ts.currentLang()] }}</h3>
+        <p class="step__desc">{{ step.desc[ts.currentLang()] }}</p>
+      </div>
+    </div>
+  </div>
+</section>

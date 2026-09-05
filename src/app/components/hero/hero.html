@@ -1,0 +1,33 @@
+<section class="hero" id="hero">
+  <div class="hero__bg">
+    <img src="assets/products-showcase.jpg" alt="SHADES Products Showcase" class="hero__bg-img" />
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__content container">
+    <p class="hero__eyebrow">{{ ui.hero.eyebrow[ts.currentLang()] }}</p>
+    <h1 class="hero__title">
+      {{ ui.hero.titleLine1[ts.currentLang()] }} <em>{{ ui.hero.titleHighlight[ts.currentLang()] }}</em> {{ ui.hero.titleLine2[ts.currentLang()] }}
+    </h1>
+    <p class="hero__lede">{{ ui.hero.desc[ts.currentLang()] }}</p>
+
+    <div class="hero__stats">
+      <div class="hero__stat" *ngFor="let stat of stats">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label[ts.currentLang()] }}</span>
+      </div>
+    </div>
+
+    <div class="hero__cta">
+      <a href="#contact" class="btn btn--primary btn--lg">
+        <app-icon name="send"></app-icon>
+        <span>{{ ui.hero.ctaOrder[ts.currentLang()] }}</span>
+        <app-icon name="arrowRight" class="cta-arrow"></app-icon>
+      </a>
+      <a href="#portfolio" class="btn btn--ghost btn--lg">
+        <span>{{ ui.hero.ctaPortfolio[ts.currentLang()] }}</span>
+        <app-icon name="arrowUpRight" class="cta-arrow"></app-icon>
+      </a>
+    </div>
+  </div>
+</section>

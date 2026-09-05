@@ -1,0 +1,104 @@
+:host { display: block; }
+
+.process__line {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  position: relative;
+}
+
+.step {
+  background: rgba(14, 28, 51, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-smooth),
+              border-color var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232, 122, 32, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(232, 122, 32, 0.12);
+}
+
+.step__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.step__num {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--clr-pumpkin);
+  line-height: 1;
+}
+
+.step__duration {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(232, 122, 32, 0.1);
+  border: 1px solid rgba(232, 122, 32, 0.25);
+  color: var(--clr-pumpkin-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.step__icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(232, 122, 32, 0.12);
+  border: 1px solid rgba(232, 122, 32, 0.25);
+  color: var(--clr-pumpkin);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.step:hover .step__icon-box {
+  background: var(--clr-pumpkin);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 15px rgba(232, 122, 32, 0.4);
+}
+
+.step__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.step__desc {
+  font-size: 0.92rem;
+  color: var(--clr-white-70);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .process__line {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .process__line {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,48 @@
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">{{ ui.portfolioSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.portfolioSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.portfolioSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <!-- Luxury Bento Grid (zd.uz inspired) -->
+    <div class="portfolio__grid">
+      <article
+        *ngFor="let item of items; let i = index"
+        class="portfolio__card reveal"
+        [ngClass]="'portfolio__card--' + item.id"
+        [class]="'reveal-delay-' + ((i % 4) + 1)"
+      >
+        <div class="portfolio__img-box">
+          <img [src]="item.image" [alt]="item.title[ts.currentLang()]" loading="lazy" />
+        </div>
+
+        <!-- Floating Glass Pill Badge (Top Left) -->
+        <span class="portfolio__badge">
+          {{ item.badge[ts.currentLang()] }}
+        </span>
+
+        <!-- Floating Circle Arrow (Top Right) -->
+        <a [href]="catalogUrl" target="_blank" rel="noopener" class="portfolio__arrow-btn" aria-label="View Project">
+          <app-icon name="arrowUpRight"></app-icon>
+        </a>
+
+        <!-- Dark Gradient Vignette & Editorial Typography (Bottom) -->
+        <div class="portfolio__caption">
+          <span class="portfolio__category">{{ item.category[ts.currentLang()] }}</span>
+          <h3 class="portfolio__title">{{ item.title[ts.currentLang()] }}</h3>
+          <p class="portfolio__desc">{{ item.description[ts.currentLang()] }}</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Centered Elegant Pill Button (zd.uz style) -->
+    <div class="portfolio__footer reveal">
+      <a [href]="catalogUrl" target="_blank" rel="noopener" class="btn btn--outline-pill">
+        <span>{{ ui.portfolioSection.viewAllBtn[ts.currentLang()] }}</span>
+        <app-icon name="arrowRight"></app-icon>
+      </a>
+    </div>
+  </div>
+</section>

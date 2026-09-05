@@ -1,0 +1,288 @@
+/* ═══════════════════════════════════════════════════
+   SHADES — Global Design System
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@400;500;700;900&display=swap');
+
+/* ─── CSS Custom Properties ─── */
+:root {
+  /* Colors */
+  --clr-navy:         #0a1628;
+  --clr-navy-light:   #132040;
+  --clr-navy-mid:     #1a2d52;
+  --clr-navy-surface: #0e1c33;
+  --clr-pumpkin:      #e87a20;
+  --clr-pumpkin-light:#f5922e;
+  --clr-pumpkin-dark: #c96a1a;
+  --clr-white:        #ffffff;
+  --clr-white-90:     rgba(255,255,255,0.9);
+  --clr-white-70:     rgba(255,255,255,0.7);
+  --clr-white-40:     rgba(255,255,255,0.4);
+  --clr-white-10:     rgba(255,255,255,0.1);
+  --clr-white-05:     rgba(255,255,255,0.05);
+
+  /* Typography */
+  --ff-display:  'Unbounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ff-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: var(--ff-display);
+  --font-body:    var(--ff-body);
+  --fs-hero:     clamp(2.2rem, 5vw, 4rem);
+  --fs-h2:       clamp(1.8rem, 3.5vw, 2.8rem);
+  --fs-h3:       clamp(1.1rem, 2vw, 1.4rem);
+  --fs-body:     1rem;
+  --fs-small:    0.875rem;
+  --fs-eyebrow:  0.8rem;
+
+  /* Spacing */
+  --space-section: clamp(5rem, 10vw, 8rem);
+  --space-lg:      3rem;
+  --space-md:      1.5rem;
+  --space-sm:      0.75rem;
+  --space-xs:      0.5rem;
+
+  /* Layout & Radii — Modern Luxury Organic Aesthetic (zd.uz & Apple inspired) */
+  --max-width:   1260px;
+  --radius-xs: 8px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 34px;
+  --radius-2xl: 44px;
+  --radius-pill: 9999px;
+  --border-radius: 28px;
+  --border-radius-sm: 16px;
+  --border-radius-pill: 9999px;
+
+  /* Transitions & Fluid Physics */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.35s;
+  --duration-slow: 0.65s;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--clr-white);
+  background-color: var(--clr-navy);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol { list-style: none; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ─── Utility Classes ─── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--space-section) 0;
+}
+
+.section--light {
+  background-color: var(--clr-navy-light);
+}
+
+/* Section Header — DRY pattern */
+.section__head {
+  margin-bottom: var(--space-lg);
+}
+
+.section__head--center {
+  text-align: center;
+}
+
+.section__eyebrow {
+  font-family: var(--ff-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-pumpkin);
+  margin-bottom: var(--space-sm);
+}
+
+.section__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--clr-white);
+}
+
+.section__title em {
+  font-style: normal;
+  color: var(--clr-pumpkin);
+}
+
+.section__lede {
+  font-size: 1.05rem;
+  color: var(--clr-white-70);
+  max-width: 600px;
+  margin-top: var(--space-sm);
+  line-height: 1.7;
+}
+
+.section__head--center .section__lede {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── Buttons — DRY pattern ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  padding: 0.85rem 1.8rem;
+  border-radius: var(--border-radius-pill);
+  transition: all var(--duration-fast) var(--ease-smooth);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary {
+  background: var(--clr-pumpkin);
+  color: var(--clr-white);
+}
+
+.btn--primary:hover {
+  background: var(--clr-pumpkin-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 122, 32, 0.3);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--clr-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.btn--ghost:hover {
+  border-color: var(--clr-pumpkin);
+  color: var(--clr-pumpkin-light);
+  background: rgba(232, 122, 32, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn--outline-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--clr-white);
+  padding: 0.95rem 2.4rem;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s var(--ease-smooth);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn--outline-pill:hover {
+  background: rgba(232, 122, 32, 0.12);
+  border-color: var(--clr-pumpkin);
+  color: var(--clr-pumpkin-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(232, 122, 32, 0.25);
+}
+
+.btn--lg {
+  padding: 1.05rem 2.4rem;
+  font-size: var(--fs-body);
+}
+
+/* ─── Reveal Animation — Graceful, Fluid & Non-destructive ─── */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s var(--ease-smooth),
+              transform 0.5s var(--ease-smooth);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-navy-mid);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-pumpkin);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--clr-pumpkin);
+  color: var(--clr-white);
+}

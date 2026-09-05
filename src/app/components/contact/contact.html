@@ -1,0 +1,145 @@
+<section class="section section--light" id="contact">
+  <div class="container">
+    <div class="section__head section__head--center reveal">
+      <p class="section__eyebrow">{{ ui.contactSection.eyebrow[ts.currentLang()] }}</p>
+      <h2 class="section__title">{{ ui.contactSection.title[ts.currentLang()] }}</h2>
+      <p class="section__sub">{{ ui.contactSection.subtitle[ts.currentLang()] }}</p>
+    </div>
+
+    <div class="contact__layout">
+      <!-- Left: Contact Info & Channels -->
+      <div class="contact__info reveal">
+        <div class="contact__card">
+          <a [href]="'tel:' + contact.phoneRaw" class="contact__row">
+            <div class="contact__icon">
+              <app-icon name="phone"></app-icon>
+            </div>
+            <div>
+              <strong>{{ ui.contactSection.formPhone[ts.currentLang()] }}</strong>
+              <span>{{ contact.phone }}</span>
+            </div>
+          </a>
+
+          <a [href]="contact.telegramUrl" target="_blank" rel="noopener" class="contact__row">
+            <div class="contact__icon">
+              <app-icon name="send"></app-icon>
+            </div>
+            <div>
+              <strong>Telegram Buyurtma</strong>
+              <span>{{ contact.telegramUser }}</span>
+            </div>
+          </a>
+
+          <a [href]="contact.instagramUrl" target="_blank" rel="noopener" class="contact__row">
+            <div class="contact__icon">
+              <app-icon name="instagram"></app-icon>
+            </div>
+            <div>
+              <strong>Instagram</strong>
+              <span>{{ contact.instagram }}</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Social / Channel Links with Lucide Arrows -->
+        <div class="contact__socials">
+          <a [href]="contact.chatUrl" target="_blank" rel="noopener" class="contact__social-btn">
+            <div class="social-btn-inner">
+              <app-icon name="users"></app-icon>
+              <span>SHADES Mijozlar Chati</span>
+            </div>
+            <span class="contact__social-arrow">
+              <app-icon name="arrowUpRight"></app-icon>
+            </span>
+          </a>
+
+          <a [href]="contact.catalogUrl" target="_blank" rel="noopener" class="contact__social-btn">
+            <div class="social-btn-inner">
+              <app-icon name="book"></app-icon>
+              <span>Narxlar va Kataloglar</span>
+            </div>
+            <span class="contact__social-arrow">
+              <app-icon name="arrowUpRight"></app-icon>
+            </span>
+          </a>
+        </div>
+
+        <!-- Workshop Preview -->
+        <div class="contact__visual">
+          <img src="assets/workshop.jpg" alt="SHADES Printing Studio" loading="lazy" />
+          <div class="visual__tag">
+            <app-icon name="zap"></app-icon>
+            <span>Toshkent, SHADES Ustaxonasi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Direct Order Form -->
+      <div class="contact__form-wrap reveal reveal-delay-2">
+        <form class="contact__form" (ngSubmit)="sendToTelegram()">
+          <h3 class="form__title">Tezkor Buyurtma Yuborish</h3>
+          <p class="form__sub">Ma’lumotlarni to‘ldiring, biz darhol Telegram orqali javob beramiz.</p>
+
+          <div class="form__group">
+            <label>{{ ui.contactSection.formName[ts.currentLang()] }}</label>
+            <input 
+              type="text" 
+              class="form__input" 
+              [placeholder]="ts.currentLang() === 'uz' ? 'Ismingizni kiriting' : (ts.currentLang() === 'ru' ? 'Ваше имя' : 'Your Name')" 
+              [ngModel]="name()" 
+              (ngModelChange)="name.set($event)"
+              name="name" 
+              required />
+          </div>
+
+          <div class="form__group">
+            <label>{{ ui.contactSection.formPhone[ts.currentLang()] }}</label>
+            <input 
+              type="tel" 
+              class="form__input" 
+              placeholder="+998 90 123 45 67" 
+              [ngModel]="phone()" 
+              (ngModelChange)="phone.set($event)"
+              name="phone" 
+              required />
+          </div>
+
+          <div class="form__group">
+            <label>{{ ui.contactSection.formService[ts.currentLang()] }}</label>
+            <select 
+              class="form__select" 
+              [ngModel]="selectedService()" 
+              (ngModelChange)="selectedService.set($event)"
+              name="service">
+              <option *ngFor="let s of services" [value]="s.id">
+                {{ s.title[ts.currentLang()] }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form__group">
+            <label>{{ ui.contactSection.formMessage[ts.currentLang()] }}</label>
+            <textarea 
+              class="form__textarea" 
+              rows="3" 
+              [placeholder]="ts.currentLang() === 'uz' ? 'Qo‘shimcha ma’lumot, tiraj soni va o‘lchami...' : 'Тираж, размеры и пожелания...'"
+              [ngModel]="comment()"
+              (ngModelChange)="comment.set($event)"
+              name="comment"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full form__submit">
+            <app-icon name="send"></app-icon>
+            <span>{{ ui.contactSection.submitBtn[ts.currentLang()] }}</span>
+            <app-icon name="arrowRight" class="btn-arrow"></app-icon>
+          </button>
+
+          <div class="form__hint" *ngIf="submitted()">
+            <app-icon name="checkCircle" class="hint-check"></app-icon>
+            <span>{{ ui.contactSection.successMsg[ts.currentLang()] }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

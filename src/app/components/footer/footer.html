@@ -1,0 +1,122 @@
+<footer class="footer">
+  <div class="container">
+    <!-- Studio Location & Interactive Map (Toshkent Markazi Demo) -->
+    <div class="footer__map-card reveal">
+      <div class="footer__map-info">
+        <span class="map-badge">
+          <app-icon name="mapPin"></app-icon>
+          <span>{{ ts.currentLang() === 'uz' ? 'Ustaxona & Shourum Manzili' : (ts.currentLang() === 'ru' ? 'Адрес цеха и шоурума' : 'Studio & Workshop Location') }}</span>
+        </span>
+        <h3 class="map-title">{{ contact.address[ts.currentLang()] }}</h3>
+        <p class="map-sub">
+          {{ ts.currentLang() === 'uz' 
+             ? 'Buyurtmalarni olib ketish (samovyvoz), bosma namunalar bilan tanishish yoki individual loyihani muhokama qilish uchun ustaxonamizga tashrif buyuring.' 
+             : (ts.currentLang() === 'ru' 
+                ? 'Приезжайте к нам для самовывоза, просмотра физических образцов материалов и согласования тиража.' 
+                : 'Visit our studio for order pickup, physical print proof review, and direct consultations.') 
+          }}
+        </p>
+
+        <div class="map-hours">
+          <app-icon name="clock"></app-icon>
+          <span>{{ contact.workingHours[ts.currentLang()] }}</span>
+        </div>
+
+        <div class="map-actions">
+          <a [href]="contact.yandexMapUrl" target="_blank" rel="noopener" class="btn btn--primary map-btn">
+            <app-icon name="mapPin"></app-icon>
+            <span>{{ ts.currentLang() === 'uz' ? 'Yandex Xarita' : (ts.currentLang() === 'ru' ? 'Яндекс Карты' : 'Yandex Maps') }}</span>
+            <app-icon name="arrowUpRight"></app-icon>
+          </a>
+          <a [href]="contact.googleMapUrl" target="_blank" rel="noopener" class="btn btn--ghost map-btn">
+            <span>Google Maps</span>
+            <app-icon name="arrowUpRight"></app-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__map-frame">
+        <iframe 
+          title="SHADES Tashkent Location Map"
+          [src]="mapEmbedSafeUrl" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="map-overlay-badge">
+          <span class="pulse-dot"></span>
+          <span>SHADES Tashkent Studio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__grid">
+      <!-- Brand -->
+      <div class="footer__brand">
+        <div class="footer__logo-wrap">
+          <app-logo width="46" height="46"></app-logo>
+          <div class="footer__logo-text">
+            <span class="footer__brand-title">SHADES</span>
+            <span class="footer__brand-sub">PRINT STUDIO</span>
+          </div>
+        </div>
+        <p class="footer__desc">{{ ui.footer.desc[ts.currentLang()] }}</p>
+      </div>
+
+      <!-- Nav -->
+      <div class="footer__col">
+        <h4>{{ ts.currentLang() === 'uz' ? 'Sahifalar' : (ts.currentLang() === 'ru' ? 'Разделы' : 'Navigation') }}</h4>
+        <nav class="footer__nav">
+          <a href="#services">{{ ui.nav.services[ts.currentLang()] }}</a>
+          <a href="#portfolio">{{ ui.nav.portfolio[ts.currentLang()] }}</a>
+          <a href="#process">{{ ui.nav.process[ts.currentLang()] }}</a>
+          <a href="#advantages">{{ ui.nav.advantages[ts.currentLang()] }}</a>
+          <a href="#faq">{{ ui.nav.faq[ts.currentLang()] }}</a>
+          <a href="#contact">{{ ui.nav.contact[ts.currentLang()] }}</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__col">
+        <h4>{{ ui.nav.contact[ts.currentLang()] }}</h4>
+        <div class="footer__contacts">
+          <a [href]="'tel:' + contact.phoneRaw" class="footer__contact-link">
+            <app-icon name="phone"></app-icon>
+            <span>{{ contact.phone }}</span>
+          </a>
+          <a [href]="contact.telegramUrl" target="_blank" rel="noopener" class="footer__contact-link">
+            <app-icon name="send"></app-icon>
+            <span>{{ contact.telegramUser }}</span>
+          </a>
+          <a [href]="contact.instagramUrl" target="_blank" rel="noopener" class="footer__contact-link">
+            <app-icon name="instagram"></app-icon>
+            <span>{{ contact.instagram }}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Channels & Catalogs -->
+      <div class="footer__col">
+        <h4>{{ ts.currentLang() === 'uz' ? 'Resurslar' : (ts.currentLang() === 'ru' ? 'Ресурсы' : 'Resources') }}</h4>
+        <div class="footer__social-list">
+          <a [href]="contact.chatUrl" target="_blank" rel="noopener" class="footer__ext-link">
+            <app-icon name="users"></app-icon>
+            <span>Mijozlar Chati</span>
+            <app-icon name="arrowUpRight" class="ext-arrow"></app-icon>
+          </a>
+          <a [href]="contact.catalogUrl" target="_blank" rel="noopener" class="footer__ext-link">
+            <app-icon name="book"></app-icon>
+            <span>Narxlar va Kataloglar</span>
+            <app-icon name="arrowUpRight" class="ext-arrow"></app-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {{ year }} SHADES. {{ ui.footer.rights[ts.currentLang()] }}</p>
+    </div>
+  </div>
+</footer>
