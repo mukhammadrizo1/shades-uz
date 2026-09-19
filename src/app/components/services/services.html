@@ -31,13 +31,12 @@
         <h3 class="service-card__title">{{ item.title[ts.currentLang()] }}</h3>
         <p class="service-card__desc">{{ item.shortDesc[ts.currentLang()] }}</p>
 
-        <!-- Feature Chips -->
-        <ul class="service-card__features">
-          <li *ngFor="let feat of item.features[ts.currentLang()].slice(0, 2)">
-            <app-icon name="checkCircle" class="feat-icon"></app-icon>
-            <span>{{ feat }}</span>
-          </li>
-        </ul>
+        <!-- Products Flex Wrap Pill Chips -->
+        <div class="service-card__products">
+          <span class="product-chip" *ngFor="let prod of item.features[ts.currentLang()]">
+            {{ prod }}
+          </span>
+        </div>
 
         <!-- Bottom Status Bar -->
         <div class="service-card__bottom">

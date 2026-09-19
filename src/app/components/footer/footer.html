@@ -90,6 +90,10 @@
             <app-icon name="send"></app-icon>
             <span>{{ contact.telegramUser }}</span>
           </a>
+          <a [href]="'mailto:' + contact.email" class="footer__contact-link">
+            <app-icon name="mail"></app-icon>
+            <span>{{ contact.email }}</span>
+          </a>
           <a [href]="contact.instagramUrl" target="_blank" rel="noopener" class="footer__contact-link">
             <app-icon name="instagram"></app-icon>
             <span>{{ contact.instagram }}</span>

@@ -40,15 +40,50 @@
   padding-bottom: 4rem;
 }
 
-.hero__eyebrow {
+.hero__slogan {
+  margin-bottom: 1.4rem;
+  animation: fadeInUp 0.8s var(--ease-smooth) both;
+}
+
+.hero__slogan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.1rem;
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-family: var(--ff-body);
-  font-size: var(--fs-eyebrow);
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--clr-pumpkin);
-  margin-bottom: 1.2rem;
-  animation: fadeInUp 0.8s var(--ease-smooth) both;
+  box-shadow: 0 0 24px rgba(255, 107, 0, 0.15);
+}
+
+.hero__slogan-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clr-pumpkin);
+  box-shadow: 0 0 8px var(--clr-pumpkin);
+  flex-shrink: 0;
+  display: inline-block;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
 }
 
 .hero__title {
@@ -199,6 +234,16 @@
   .hero__content {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .hero__slogan {
+    margin-bottom: 1rem;
+  }
+
+  .hero__slogan-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    letter-spacing: 0.06em;
   }
 
   .hero__title {

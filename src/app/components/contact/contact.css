@@ -133,10 +133,19 @@
 /* ─── Visual Preview ─── */
 .contact__visual {
   position: relative;
+  display: block;
   border-radius: var(--radius-lg);
   overflow: hidden;
   height: 220px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact__visual:hover {
+  border-color: rgba(232, 122, 32, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(232, 122, 32, 0.18);
 }
 
 .contact__visual img {
@@ -147,7 +156,7 @@
 }
 
 .contact__visual:hover img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .visual__tag {
@@ -166,10 +175,22 @@
   border-radius: var(--radius-pill);
   font-size: 0.82rem;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact__visual:hover .visual__tag {
+  background: rgba(10, 22, 40, 0.95);
+  border-color: var(--clr-pumpkin);
+  box-shadow: 0 4px 12px rgba(232, 122, 32, 0.25);
 }
 
 .visual__tag app-icon {
   color: var(--clr-pumpkin);
+  transition: transform 0.3s ease;
+}
+
+.contact__visual:hover .visual__tag app-icon:last-child {
+  transform: translate(2px, -2px);
 }
 
 /* ─── Direct Form ─── */

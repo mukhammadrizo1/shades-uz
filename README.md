@@ -29,7 +29,9 @@ PORT=4200 node dist/concept-shades/server/server.mjs
 ```
 
 ## 📍 Bog'lanish & Demo
-- **Telefon**: +998 (95) 828-33-93
-- **Telegram**: [@MiryunusovBahrom](https://t.me/MiryunusovBahrom)
+- **Telefon**: +998 (70) 114-10-10
+- **Telegram**: [@shadesprint](https://t.me/shadesprint)
+- **Email**: [shadesprintuz@gmail.com](mailto:shadesprintuz@gmail.com)
 - **Instagram**: [instagram.com/shades.uz](https://instagram.com/shades.uz)
+- **Katalog & Namunalar**: [t.me/uzshades](https://t.me/uzshades)
 - **Mijozlar chati**: [t.me/uzshadeschat](https://t.me/uzshadeschat)

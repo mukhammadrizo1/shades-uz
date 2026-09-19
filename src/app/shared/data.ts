@@ -27,12 +27,8 @@ export interface ServiceItem {
 export interface PortfolioItem {
   id: string;
   title: LocalizedString;
-  categoryKey: 'all' | 'textile' | 'souvenir' | 'print' | 'packaging';
-  category: LocalizedString;
-  image: string;
-  size: 'normal' | 'wide' | 'tall';
   description: LocalizedString;
-  badge: LocalizedString;
+  images: string[];
 }
 
 export interface ProcessStep {
@@ -69,27 +65,28 @@ export interface TestimonialItem {
 
 // Global Contact Details
 export const CONTACT_INFO = {
-  phone: '(95) 828-33-93',
-  phoneRaw: '+998958283393',
-  telegramUser: '@MiryunusovBahrom',
-  telegramUrl: 'https://t.me/MiryunusovBahrom',
+  phone: '+998 (70) 114-10-10',
+  phoneRaw: '+998701141010',
+  email: 'shadesprintuz@gmail.com',
+  telegramUser: '@shadesprint',
+  telegramUrl: 'https://t.me/shadesprint',
   instagram: 'shades.uz',
   instagramUrl: 'https://instagram.com/shades.uz',
   chatUrl: 'https://t.me/uzshadeschat',
-  catalogUrl: 'https://t.me/+dWjz_m5ZdT0zZTli',
+  catalogUrl: 'https://t.me/uzshades',
   workingHours: {
     uz: 'Dush - Shan: 09:00 - 19:00',
     ru: 'Пн - Сб: 09:00 - 19:00',
     en: 'Mon - Sat: 09:00 - 19:00'
   },
   address: {
-    uz: "Toshkent shahri, Mirobod tumani, Markaz (Demo manzil)",
-    ru: 'г. Ташкент, Мирабадский район, Центр (Демо адрес)',
-    en: 'Tashkent city, Mirabad district, Center (Demo Address)'
+    uz: "Toshkent shahri, Iftixor ko'chasi, 9-uy",
+    ru: 'г. Ташкент, ул. Ифтихор, 9',
+    en: 'Tashkent city, Iftikhor street, 9'
   },
-  yandexMapUrl: 'https://yandex.uz/maps/10335/tashkent/?ll=69.279737%2C41.311081&z=15',
-  googleMapUrl: 'https://maps.google.com/?q=41.311081,69.279737',
-  mapEmbedUrl: 'https://maps.google.com/maps?q=41.311081,69.279737&hl=uz&z=15&output=embed'
+  yandexMapUrl: 'https://yandex.uz/maps/-/CTtXFP9v',
+  googleMapUrl: 'https://maps.google.com/?q=41.340518,69.269943',
+  mapEmbedUrl: 'https://maps.google.com/maps?q=41.340518,69.269943&hl=uz&z=17&output=embed'
 };
 
 // UI Translations
@@ -104,14 +101,30 @@ export const UI_TEXT = {
     orderBtn: { uz: 'Buyurtma berish', ru: 'Оставить заказ', en: 'Place Order' },
   },
   hero: {
-    eyebrow: { uz: 'Raqamli & Ofset Poligrafiya', ru: 'Цифровая & Офсетная Полиграфия', en: 'Digital & Offset Printing' },
-    titleLine1: { uz: 'Bosma mahsulotlaringizga', ru: 'Дарим вашей продукции', en: 'Giving your products' },
-    titleHighlight: { uz: "yorqin ranglar va sifat", ru: 'яркие цвета и качество', en: 'vibrant colors & quality' },
-    titleLine2: { uz: 'atamiz.', ru: '.', en: '.' },
+    slogan: {
+      uz: 'IJOD · SIFAT · NATIJA — BIR YECHIMDA',
+      ru: 'ТВОРЧЕСТВО · КАЧЕСТВО · РЕЗУЛЬТАТ — В ОДНОМ РЕШЕНИИ',
+      en: 'CREATIVITY · QUALITY · RESULT — IN ONE SOLUTION'
+    },
+    titleLine1: {
+      uz: 'Biznesingizga',
+      ru: 'Придадим вашему бизнесу',
+      en: 'We bring'
+    },
+    titleHighlight: {
+      uz: "yorqin ranglar va zamonaviy ko'rinish",
+      ru: 'яркие краски и современный вид',
+      en: 'vibrant colors and a modern look'
+    },
+    titleLine2: {
+      uz: 'beramiz',
+      ru: '',
+      en: 'to your business'
+    },
     desc: {
-      uz: "Vizitkalar, flayerlar, futbolkalar va korporativ suvenirlarga yuqori sifatli tezkor bosma xizmatlari. Toshkent bo'ylab sifat kafolati.",
-      ru: 'Высококачественная печать на визитках, флаерах, футболках и корпоративных сувенирах. Гарантия безупречного качества.',
-      en: 'High-precision printing on business cards, flyers, apparel, and corporate merchandise. Guaranteed top quality in Tashkent.'
+      uz: 'Vizitkalar, flayerlar, futbolkalar va korporativ suvenirlarga yuqori sifatli tezkor bosma xizmatlar. Barcha turdagi tashqi reklama maxsulotlari va xizmatlari.',
+      ru: 'Качественные и оперативные услуги печати на визитках, флаерах, футболках и корпоративных сувенирах. Все виды наружной рекламы и услуг.',
+      en: 'High-quality fast printing services on business cards, flyers, apparel, and corporate merchandise. All types of outdoor advertising products and services.'
     },
     ctaOrder: { uz: 'Buyurtma berish', ru: 'Оформить заказ', en: 'Order Now' },
     ctaPortfolio: { uz: 'Ishlarimizni ko‘rish', ru: 'Смотреть работы', en: 'View Portfolio' },
@@ -139,11 +152,8 @@ export const UI_TEXT = {
       ru: 'Каждое изделие — это внимание к деталям, качественные материалы и стиль.',
       en: 'Each piece showcases sharp precision, premium materials, and distinctive branding.'
     },
-    filterAll: { uz: 'Barchasi', ru: 'Все', en: 'All' },
-    filterTextile: { uz: 'Tekstil & Futbolkalar', ru: 'Текстиль & Футболки', en: 'Textile & Apparel' },
-    filterSouvenir: { uz: 'Suvenirlar & Krujkalar', ru: 'Сувениры & Кружки', en: 'Souvenirs & Mugs' },
-    filterPrint: { uz: 'Poligrafiya & Vizitkalar', ru: 'Полиграфия & Визитки', en: 'Stationery & Cards' },
     viewAllBtn: { uz: 'Barcha ishlar va namunalar', ru: 'Все работы и образцы', en: 'Explore all works & samples' },
+    viewSamplesBtn: { uz: 'Katalogda ko‘rish', ru: 'Смотреть в каталоге', en: 'View in Catalog' }
   },
   processSection: {
     eyebrow: { uz: '03 / Jarayon', ru: '03 / Процесс', en: '03 / Process' },
@@ -213,392 +223,319 @@ export const SERVICES: ServiceItem[] = [
     number: '01',
     iconKey: 'printer',
     title: {
-      uz: 'Poligrafiya & Vizitkalar',
-      ru: 'Полиграфия & Визитки',
-      en: 'Print & Business Cards'
+      uz: 'Poligrafiya',
+      ru: 'Полиграфия',
+      en: 'Polygraphy & Printing'
     },
     shortDesc: {
-      uz: 'Premium vizitkalar, bukletlar, kataloglar va korporativ blanklar.',
-      ru: 'Премиальные визитки, буклеты, каталоги и фирменные бланки.',
-      en: 'Luxury business cards, brochures, catalogs, and letterheads.'
+      uz: 'Vizitkalar, flayerlar, bukletlar, kataloglar va korporativ qog‘oz mahsulotlari.',
+      ru: 'Визитки, флаеры, буклеты, каталоги и фирменная полиграфическая продукция.',
+      en: 'Business cards, flyers, brochures, catalogs, and corporate paper goods.'
     },
     fullDesc: {
-      uz: 'Ofset va raqamli bosma texnologiyalari yordamida har qanday qog‘oz turida (bo‘rli, dizaynerlik, Soft-Touch laminatsiya, zarhalli folga) eng yuqori sifatli poligrafiya mahsulotlari tayyorlaymiz.',
-      ru: 'Цифровая и офсетная печать на любых типах бумаги (мелованная, дизайнерская, софт-тач ламинация, тиснение фольгой).',
-      en: 'Digital and offset production on fine paper stocks, with soft-touch lamination, hot foil stamping, and embossed detailing.'
+      uz: 'Ofset va raqamli bosma texnologiyalari yordamida har qanday qog‘oz turida eng yuqori sifatli poligrafiya mahsulotlari tayyorlaymiz.',
+      ru: 'Офсетная и цифровая печать полиграфической продукции любого формата и тиража с гарантией качества.',
+      en: 'High-precision offset and digital production for all your business printing collateral.'
     },
     features: {
-      uz: ['Soft-Touch va mat laminatsiya', 'Zarhalli va kumush folga bosish', 'Dizaynerlik qog‘ozlari (Plike, Touch Cover)', 'Burchaklarni yumaloqlash va shaklli qirqish'],
-      ru: ['Soft-Touch и матовая ламинация', 'Тиснение золотой и серебряной фольгой', 'Дизайнерские бумаги (Plike, Touch Cover)', 'Скругление углов и фигурная плоттерная резка'],
-      en: ['Soft-Touch and matte finishes', 'Gold and silver foil stamping', 'Designer luxury papers', 'Custom die-cutting and rounded corners']
+      uz: ['Vizitka', 'Flayer', 'Buklet', 'Doorhanger', 'Papka', 'Paket', 'Bloknot', 'Katalog', 'Menyu', 'Sticker', 'Kalendar'],
+      ru: ['Визитка', 'Флаер', 'Буклет', 'Дорхенгер', 'Папка', 'Пакет', 'Блокнот', 'Каталог', 'Меню', 'Стикер', 'Календарь'],
+      en: ['Business Card', 'Flyer', 'Brochure', 'Door Hanger', 'Folder', 'Bag', 'Notepad', 'Catalog', 'Menu', 'Sticker', 'Calendar']
     },
     turnaround: { uz: '1-3 ish kuni', ru: '1-3 рабочих дня', en: '1-3 business days' },
     minOrder: { uz: '100 dona', ru: '100 шт', en: '100 pcs' },
     tag: { uz: 'Ommabop', ru: 'Популярно', en: 'Popular' }
   },
   {
-    id: 'tshirt',
+    id: 'trikotaj',
     number: '02',
     iconKey: 'shirt',
     title: {
-      uz: 'Futbolka va Xudilarga Bosma',
-      ru: 'Печать на Футболках и Худи',
-      en: 'Apparel & T-Shirt Printing'
+      uz: 'Trikotaj',
+      ru: 'Трикотаж & Текстиль',
+      en: 'Apparel & Textiles'
     },
     shortDesc: {
-      uz: 'DTF, ipak to‘r (sholkografiya) va termotransfer bosma usullari.',
-      ru: 'DTF, шелкография и термотрансферная печать любого тиража.',
-      en: 'Direct-to-Film (DTF), screen printing, and heat transfer.'
+      uz: 'Futbolkalar, kepkalar, svitshotlar va hudilarga sifatli bosma va kashta.',
+      ru: 'Футболки, кепки, свитшоты и худи с долговечным брендированием и вышивкой.',
+      en: 'Custom branded t-shirts, caps, sweatshirts, and hoodies with durable prints and embroidery.'
     },
     fullDesc: {
-      uz: 'Kompaniyangiz logotipi yoki individual dizaynni 100% paxta futbolkalar, polo, svitshot va xudilarga bardoshli, yuvilganda o‘chmaydigan qilib tushirib beramiz.',
-      ru: 'Нанесение логотипов и принтов на качественный текстиль (футболки, поло, худи). Стойкость к многократным стиркам.',
-      en: 'Long-lasting branding on 100% cotton tees, polo shirts, hoodies, and sweatshirts that endure 50+ washes without fading.'
+      uz: 'DTF, sholkografiya va 3D kashtachilik orqali sifatli matoga yuvishga chidamli qilib brendingizni tushiramiz.',
+      ru: 'Нанесение логотипов на текстиль методами DTF, шелкографии и объемной вышивки. Стойкость к стиркам.',
+      en: 'Premium textile branding via DTF, silk screen, and 3D embroidery that withstands frequent washing.'
     },
     features: {
-      uz: ['Yuqori aniqlikdagi DTF bosma', '50+ marta yuvishga chidamli', 'Keng o‘lcham va ranglar assortimenti', 'Ekologik toza va xavfsiz bo‘yoqlar'],
-      ru: ['Высокоточная DTF-печать', 'Стойкость более 50 стирок', 'Широкий ассортимент размеров и цветов', 'Экологичные сертифицированные краски'],
-      en: ['Ultra-crisp DTF prints', 'Fade-resistant for 50+ wash cycles', 'Wide size and color assortment', 'Eco-friendly and skin-safe inks']
+      uz: ['Futbolka', 'Kepka', 'Svitshot', 'Hudi', 'Nimcha'],
+      ru: ['Футболка', 'Кепка', 'Свитшот', 'Худи', 'Жилетка'],
+      en: ['T-Shirt', 'Cap', 'Sweatshirt', 'Hoodie', 'Vest']
     },
     turnaround: { uz: '1-4 ish kuni', ru: '1-4 рабочих дня', en: '1-4 business days' },
     minOrder: { uz: '1 dona dan', ru: 'От 1 шт', en: 'From 1 pc' },
     tag: { uz: 'Xit xizmat', ru: 'Хит продаж', en: 'Best Seller' }
   },
   {
-    id: 'flyers',
-    number: '03',
-    iconKey: 'fileText',
-    title: {
-      uz: 'Flayer va Bukletlar',
-      ru: 'Флаеры и Буклеты',
-      en: 'Flyers & Pamphlets'
-    },
-    shortDesc: {
-      uz: 'A4, A5, A6 va evro-formatdagi yorqin reklama tarqatma materiallari.',
-      ru: 'Яркие рекламные материалы формата А4, А5, А6 и евро-буклеты.',
-      en: 'Promotional flyers, tri-folds, and leaflets in A4, A5, A6, and DL sizes.'
-    },
-    fullDesc: {
-      uz: 'Aksiyalar, taqdimotlar va ko‘rgazmalar uchun mijozlar e’tiborini tortuvchi shirin ranglar va qulay formatdagi reklama materiallari.',
-      ru: 'Привлекательные рекламные материалы для презентаций, выставок и промо-акций с сочными цветами.',
-      en: 'Eye-catching promo collateral designed to engage prospects at events, presentations, and trade shows.'
-    },
-    features: {
-      uz: ['Turli qalinlikdagi bo‘rli qog‘oz (115g-300g)', '1 yoki 2 buklamali bukletlar', 'Yorqin ofset va tezkor raqamli bosma', 'Katta tirajlarda maxsus chegirmalar'],
-      ru: ['Мелованная бумага различной плотности (115–300 г/м²)', 'Буклеты с 1 или 2 фальцами', 'Яркий офсет и оперативная цифровая печать', 'Специальные цены на крупные тиражи'],
-      en: ['Coated papers from 115gsm to 300gsm', 'Single and double folded brochures', 'High-speed digital and offset runs', 'Volume discount tiers']
-    },
-    turnaround: { uz: '1-2 ish kuni', ru: '1-2 рабочих дня', en: '1-2 business days' },
-    minOrder: { uz: '500 dona', ru: '500 шт', en: '500 pcs' },
-    tag: { uz: 'Tezkor', ru: 'Оперативно', en: 'Fast' }
-  },
-  {
-    id: 'notebooks',
-    number: '04',
-    iconKey: 'bookOpen',
-    title: {
-      uz: 'Daftar va Bloknotlar',
-      ru: 'Блокноты и Тетради',
-      en: 'Custom Notebooks'
-    },
-    shortDesc: {
-      uz: 'Spiral va qattiq muqovali brendlangan bloknotlar va kundaliklar.',
-      ru: 'Фирменные блокноты на пружине, в твердом переплете и ежедневники.',
-      en: 'Wire-o bound, spiral, and hardcover branded stationery & notebooks.'
-    },
-    fullDesc: {
-      uz: 'Ofisingiz, seminarlar va mijozlar uchun eng foydali brendlangan korporativ esdalik sovg‘asi. Qattiq muqova, jiloli lak va xatcho‘p bilan.',
-      ru: 'Полезный корпоративный сувенир для семинаров и партнеров. Твердый переплет, УФ-лак, шелкография и закладка-ляссе.',
-      en: 'An indispensable corporate keepsake. Features soft/hard covers, selective UV varnish, and custom inner pages.'
-    },
-    features: {
-      uz: ['Metall prujina yoki termo-yopishtirish', 'Ichki sahifalarda logotip tushirish', 'Qattiq va yumshoq charm muqovalar', 'UV-lak va bo‘rtma naqshlar'],
-      ru: ['Металлическая пружина или термопереплет', 'Нанесение логотипа на внутренние листы', 'Твердая или экокожаная обложка', 'Выборочный УФ-лак и блинтовое тиснение'],
-      en: ['Wire-o or case-bound options', 'Branded ruled or grid internal pages', 'Hardcover and eco-leather styles', 'Spot UV and debossed finishes']
-    },
-    turnaround: { uz: '3-5 ish kuni', ru: '3-5 рабочих дней', en: '3-5 business days' },
-    minOrder: { uz: '50 dona', ru: '50 шт', en: '50 pcs' },
-    tag: { uz: 'Korporativ', ru: 'Корпоративно', en: 'Corporate' }
-  },
-  {
-    id: 'caps',
-    number: '05',
-    iconKey: 'sparkles',
-    title: {
-      uz: 'Kepka va Bosh Kiyimlar',
-      ru: 'Кепки и Бейсболки',
-      en: 'Caps & Headwear'
-    },
-    shortDesc: {
-      uz: 'Kashta (vishivka), DTF va shevron usulidagi zamonaviy kepkalar.',
-      ru: 'Машинная вышивка, шевроны и DTF-печать на бейсболках.',
-      en: 'Custom embroidery, 3D puff patches, and transfers on baseball caps.'
-    },
-    fullDesc: {
-      uz: 'Hodimlaringiz va promosiya tadbirlari uchun 5 va 6 panelli sifatli kepkalarga qavariq kashta va bosma tushirish xizmati.',
-      ru: 'Качественные 5- и 6-панельные бейсболки для персонала и промо-мероприятий с объемной вышивкой или шевронами.',
-      en: '5-panel and 6-panel structured caps branded with 3D embroidery or heat transfer for staff uniforms and events.'
-    },
-    features: {
-      uz: ['3D qavariq kashta tikish', 'Paxta va sintetik kepka modellari', 'Metall qisqichli regulyator', 'Yuvish va quyosh nuriga chidamli'],
-      ru: ['Объемная 3D-вышивка', 'Модели из 100% хлопка и смесовых тканей', 'Надежные металлические застежки', 'Устойчивость к выгоранию на солнце'],
-      en: ['Raised 3D puff embroidery', '100% cotton twill fabrics', 'Premium metal buckle adjusters', 'Fade and UV-resistant dyes']
-    },
-    turnaround: { uz: '3-5 ish kuni', ru: '3-5 рабочих дней', en: '3-5 business days' },
-    minOrder: { uz: '20 dona', ru: '20 шт', en: '20 pcs' },
-    tag: { uz: 'Trend', ru: 'Тренд', en: 'Trending' }
-  },
-  {
     id: 'souvenirs',
-    number: '06',
+    number: '03',
     iconKey: 'gift',
     title: {
-      uz: 'Krujka va Korporativ Suvenirlar',
-      ru: 'Кружки и Сувениры',
-      en: 'Drinkware & Merchandise'
+      uz: "Suvenir va sovg'alar",
+      ru: 'Сувениры и подарки',
+      en: 'Souvenirs & Gifts'
     },
     shortDesc: {
-      uz: 'Keramik krujkalar, termoslar, ruchkalar va brendlangan sovg‘a qutilari.',
-      ru: 'Кружки, термосы, ручки, флешки и брендированные подарочные наборы.',
-      en: 'Ceramic mugs, insulated tumblers, engraved pens, and gift boxes.'
+      uz: 'Ruchkalar, bloknotlar, krujkalar, termoslar va zamonaviy brendlangan aksessuarlar.',
+      ru: 'Ручки, блокноты, кружки, термосы и стильные брендированные аксессуары.',
+      en: 'Pens, notepads, mugs, thermoses, and modern branded corporate accessories.'
     },
     fullDesc: {
-      uz: 'Mijozlaringiz xotirasida uzoq vaqt saqlanib qoluvchi sifatli korporativ sovg‘alar to‘plami. Sublimatsiya va UV-bosma.',
-      ru: 'Подарки партнерам и клиентам, которые ежедневно напоминают о вашем бренде. Стойкая сублимация и круговая УФ-печать.',
-      en: 'Memorable swag that keeps your brand top of mind every day. Sublimation, rotary UV, and laser engraving.'
+      uz: 'Mijozlaringiz va hamkorlaringiz xotirasida uzoq vaqt saqlanib qoluvchi sifatli korporativ sovg‘alar.',
+      ru: 'Подарки партнерам и клиентам: лазерная гравировка, УФ-печать и тампопечать на любых сувенирах.',
+      en: 'High-end corporate gift solutions featuring laser engraving, rotary UV, and tampo printing.'
     },
     features: {
-      uz: ['Rangli va xameleon krujkalar', 'Metall termoslarga lazer o‘ymakorligi', 'To‘liq rangli aylanma UV-bosma', 'Brendlangan individual qadoq'],
-      ru: ['Белые, цветные и кружки-хамелеоны', 'Лазерная гравировка на термосах', 'Полноцветная круговая УФ-печать', 'Индивидуальная подарочная упаковка'],
-      en: ['White, colored, and magic heat-reveal mugs', 'Laser etching on stainless tumblers', '360° full-color rotary UV printing', 'Custom printed presentation boxes']
+      uz: ['Bloknot', 'Ruchka', 'Qalam', 'Bokal', 'Statuetka', 'Termos', 'Fleshka', 'Brilok', 'Hamyon', 'Cardholder', 'Powerbank', 'Soyabon', 'Sumka'],
+      ru: ['Блокнот', 'Ручка', 'Карандаш', 'Бокал', 'Статуэтка', 'Термос', 'Флешка', 'Брелок', 'Кошелек', 'Картхолдер', 'Повербанк', 'Зонт', 'Сумка'],
+      en: ['Notepad', 'Pen', 'Pencil', 'Mug', 'Statuette', 'Thermos', 'Flash Drive', 'Keychain', 'Wallet', 'Cardholder', 'Powerbank', 'Umbrella', 'Tote Bag']
     },
     turnaround: { uz: '2-4 ish kuni', ru: '2-4 рабочих дня', en: '2-4 business days' },
     minOrder: { uz: '10 dona', ru: '10 шт', en: '10 pcs' },
     tag: { uz: 'Premium', ru: 'Премиум', en: 'Premium' }
+  },
+  {
+    id: 'branding',
+    number: '04',
+    iconKey: 'sparkles',
+    title: {
+      uz: 'Korporativ brendlash',
+      ru: 'Корпоративный брендинг',
+      en: 'Corporate Branding'
+    },
+    shortDesc: {
+      uz: 'Roll Up, X Banner, bayroqlar, tablichkalar va ko‘rgazma jihozlari.',
+      ru: 'Roll Up, X-баннеры, флаги, таблички, бейджи и выставочное оборудование.',
+      en: 'Roll-ups, X-banners, flags, plates, badges, and complete exhibition setups.'
+    },
+    fullDesc: {
+      uz: 'Kompaniyangiz tadbirlari, forumlari va ko‘rgazmalari uchun to‘liq brendlangan vizual mahsulotlar to‘plami.',
+      ru: 'Комплексное оформление стендов, презентаций и корпоративных мероприятий под ключ.',
+      en: 'Turnkey visual branding and display solutions for corporate conferences, expos, and presentations.'
+    },
+    features: {
+      uz: ["Sovg'alar to'plami", 'X Banner (Pauk)', 'Roll Up', 'Bayroq', 'Tablichka', 'Beydjik', 'Kartina', 'Poster', "Ko'rgazma mahsulotlari"],
+      ru: ['Подарочный набор', 'X-баннер (Паук)', 'Roll Up', 'Флаг', 'Табличка', 'Бейджик', 'Картина', 'Постер', 'Выставочные материалы'],
+      en: ['Gift Set', 'X-Banner (Spider)', 'Roll Up', 'Flag', 'Nameplate', 'Badge', 'Wall Art', 'Poster', 'Exhibition Collateral']
+    },
+    turnaround: { uz: '2-5 ish kuni', ru: '2-5 рабочих дней', en: '2-5 business days' },
+    minOrder: { uz: '1 to‘plam', ru: 'От 1 комплекта', en: 'From 1 set' },
+    tag: { uz: 'Eksklyuziv', ru: 'Эксклюзив', en: 'Exclusive' }
+  },
+  {
+    id: 'outdoor',
+    number: '05',
+    iconKey: 'layers',
+    title: {
+      uz: 'Tashqi reklama',
+      ru: 'Наружная реклама',
+      en: 'Outdoor Advertising'
+    },
+    shortDesc: {
+      uz: 'Hajmli harflar, lightbox, bannerlar, stendlar va fasad reklamalari.',
+      ru: 'Объемные буквы, лайтбоксы, баннеры, штендеры и фасадные конструкции.',
+      en: '3D channel letters, lightboxes, banners, A-frame signs, and facade advertisements.'
+    },
+    fullDesc: {
+      uz: 'Ko‘cha va binolar uchun uzoqdan ko‘zga tashlanadigan yorug‘likli va yorug‘liksiz barcha turdagi reklama konstruksiyalari.',
+      ru: 'Световые и несветовые конструкции любой сложности для витрин, фасадов и городского пространства.',
+      en: 'Illuminated and non-illuminated advertising structures for storefronts, building facades, and outdoors.'
+    },
+    features: {
+      uz: ['Banner', 'Oracal', 'Hajmli harflar', 'Bayroq (parus)', 'Shtender', 'Psevdo harflar', 'Stend', 'Lightbox', 'Slimbox', 'Stella'],
+      ru: ['Баннер', 'Оракал', 'Объемные буквы', 'Флаг (парус)', 'Штендер', 'Псевдообъемные буквы', 'Стенд', 'Лайтбокс', 'Слимбокс', 'Стелла'],
+      en: ['Banner', 'Oracal Vinyl', '3D Volume Letters', 'Sail Flag', 'A-Frame Sign', 'Flat-Cut Letters', 'Display Stand', 'Lightbox', 'Slimbox', 'Pylon Sign']
+    },
+    turnaround: { uz: '3-7 ish kuni', ru: '3-7 рабочих дней', en: '3-7 business days' },
+    minOrder: { uz: '1 dona', ru: 'От 1 шт', en: 'From 1 pc' },
+    tag: { uz: 'Keng format', ru: 'Широкий формат', en: 'Large Format' }
+  },
+  {
+    id: 'autobranding',
+    number: '06',
+    iconKey: 'truck',
+    title: {
+      uz: 'Avtobrending',
+      ru: 'Автобрендинг',
+      en: 'Vehicle Branding'
+    },
+    shortDesc: {
+      uz: 'Kompaniya transport vositalarini vinil va oracal orqali harakatdagi reklamaga aylantirish.',
+      ru: 'Брендирование корпоративного автопарка виниловыми пленками и наклейками.',
+      en: 'Transform corporate fleets into mobile advertising with vinyl wraps and decals.'
+    },
+    fullDesc: {
+      uz: 'Yengil avtomobillar, furalar, yuk mashinalari va mikroavtobuslarni yuqori sifatli oracal va laminatsiyalangan plyonkalar bilan brendlash.',
+      ru: 'Полная и частичная оклейка легковых авто, фургонов, грузовиков и спецтехники стойкими пленками.',
+      en: 'Partial and full wrapping for cars, vans, trucks, and trailers with UV-resistant laminated vinyl.'
+    },
+    features: {
+      uz: ['Avtomobil brendlash', 'Vinil / Oracal yopishtirish', 'Magnit stikerlar', 'Fura va tentlarga reklama', "Qisman va to'liq brendlash"],
+      ru: ['Брендирование авто', 'Оклейка винилом / оракалом', 'Магнитные наклейки', 'Реклама на фурах и тентах', 'Частичная и полная оклейка'],
+      en: ['Car Branding', 'Vinyl & Oracal Wrapping', 'Magnetic Decals', 'Truck & Trailer Advertising', 'Partial & Full Vehicle Wraps']
+    },
+    turnaround: { uz: '2-5 ish kuni', ru: '2-5 рабочих дней', en: '2-5 business days' },
+    minOrder: { uz: '1 avtomobil', ru: 'От 1 авто', en: 'From 1 vehicle' },
+    tag: { uz: 'Trend', ru: 'Тренд', en: 'Trending' }
   }
 ];
 
 // Portfolio Items Categorized
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    id: 'tshirt-mockup',
-    categoryKey: 'textile',
+    id: 'poligrafiya',
     title: {
-      uz: 'SHADES Brendlangan Futbolkalar',
-      ru: 'Фирменные Футболки SHADES',
-      en: 'SHADES Branded T-Shirts'
-    },
-    category: {
-      uz: 'Tekstil & Kiyim',
-      ru: 'Текстиль & Одежда',
-      en: 'Textile & Apparel'
-    },
-    image: 'assets/branded-tshirt.jpg',
-    size: 'wide',
-    description: {
-      uz: 'To‘q ko‘k paxta matoga yuqori aniqlikdagi to‘q sariq SHADES DTF logotipi bosilgan futbolkalar.',
-      ru: 'Плотный хлопковый трикотаж с ярким оранжевым принтом логотипа методом DTF.',
-      en: 'Heavyweight cotton tees customized with vibrant orange SHADES logo via premium DTF.'
-    },
-    badge: { uz: 'DTF Bosma', ru: 'DTF Печать', en: 'DTF Print' }
-  },
-  {
-    id: 'mug-mockup',
-    categoryKey: 'souvenir',
-    title: {
-      uz: 'Keramik Krujkalar Kolleksiyasi',
-      ru: 'Коллекция Керамических Кружек',
-      en: 'Custom Ceramic Mugs'
-    },
-    category: {
-      uz: 'Suvenirlar',
-      ru: 'Сувениры',
-      en: 'Merchandise'
-    },
-    image: 'assets/branded-mug.jpg',
-    size: 'normal',
-    description: {
-      uz: 'Qora mat keramik krujkaga to‘q sariq SHADES naqshini sublimatsiya usulida tushirish.',
-      ru: 'Матовая керамика с долговечным сублимационным нанесением фирменной символики.',
-      en: 'Matte black finish mugs featuring crisp sublimation orange brand graphics.'
-    },
-    badge: { uz: 'Sublimatsiya', ru: 'Сублимация', en: 'Sublimation' }
-  },
-  {
-    id: 'notebook-mockup',
-    categoryKey: 'print',
-    title: {
-      uz: 'Korporativ Bloknot & Qalamlar',
-      ru: 'Корпоративные Блокноты',
-      en: 'Corporate Notebook Sets'
-    },
-    category: {
-      uz: 'Ofis Poligrafiyasi',
-      ru: 'Офисная Полиграфия',
-      en: 'Office Stationery'
-    },
-    image: 'assets/branded-notebook.jpg',
-    size: 'normal',
-    description: {
-      uz: 'Soft-touch qattiq muqovali, to‘q sariq bo‘rtma SHADES belgisi tushirilgan kundaliklar.',
-      ru: 'Твердая soft-touch обложка с фирменным оранжевым тиснением и закладкой.',
-      en: 'Soft-touch hardcover journals with tactile debossed orange emblem and ribbon bookmark.'
-    },
-    badge: { uz: 'Qattiq Muqova', ru: 'Твердый переплет', en: 'Hardcover' }
-  },
-  {
-    id: 'cards-mockup',
-    categoryKey: 'print',
-    title: {
-      uz: 'Premium Vizitkalar To‘plami',
-      ru: 'Премиум Визитные Карточки',
-      en: 'Executive Business Cards'
-    },
-    category: {
       uz: 'Poligrafiya',
       ru: 'Полиграфия',
-      en: 'Print Stationery'
+      en: 'Polygraphy & Printing'
     },
-    image: 'assets/business-cards.jpg',
-    size: 'normal',
     description: {
-      uz: '450g paxtali qora kartonda to‘q sariq zarhalli folga bosilgan elita vizitkalar.',
-      ru: 'Плотный дизайнерский картон 450 г/м² с горячим оранжевым тиснением фольгой.',
-      en: 'Ultra-thick 450gsm dark cotton board highlighted with metallic orange foil.'
+      uz: 'Vizitkalardan tortib kataloglargacha — Shades uslubini aks ettiruvchi va brendingizni professional namoyish etuvchi poligrafiya mahsulotlarini yaratamiz.',
+      ru: 'От визиток до каталогов — создаём полиграфию, которая передаёт стиль Shades и помогает вашему бренду выглядеть профессионально.',
+      en: 'From business cards to catalogs — we create polygraphy that reflects the Shades style and helps your brand look professional.'
     },
-    badge: { uz: 'Zarhalli Folga', ru: 'Тиснение фольгой', en: 'Foil Stamping' }
+    images: [
+      'assets/poligrafiya/20230421_195644.jpg',
+      'assets/poligrafiya/20231021_162631.jpg',
+      'assets/poligrafiya/20231111_114412.jpg',
+      'assets/poligrafiya/20231113_210159.jpg',
+      'assets/poligrafiya/20240106_015712.jpg',
+      'assets/poligrafiya/a0f57e4bb66b8dacf5c42a1ae637d1bb.jpg',
+      'assets/poligrafiya/photo_2024-10-23_14-19-15.jpg',
+      'assets/poligrafiya/photo_2024-10-23_14-19-15 (2).jpg'
+    ]
   },
   {
-    id: 'showcase-mockup',
-    categoryKey: 'all',
+    id: 'sovga',
     title: {
-      uz: 'To‘liq Korporativ Brending To‘plami',
-      ru: 'Полный Корпоративный Комплект',
-      en: 'Full Corporate Merch Kit'
+      uz: 'Sovg‘alar',
+      ru: 'Подарки',
+      en: 'Corporate Gifts & Souvenirs'
     },
-    category: {
-      uz: 'Kompleks Loyiha',
-      ru: 'Комплексный проект',
-      en: 'Full Identity Kit'
-    },
-    image: 'assets/products-showcase.jpg',
-    size: 'tall',
     description: {
-      uz: 'Yagona brend uslubida tayyorlangan kiyimlar, idishlar, kanselyariya va qadoqlar.',
-      ru: 'Единая концепция фирменного стиля: текстиль, посуда, канцелярия и упаковка.',
-      en: 'Unified identity kit spanning apparel, drinkware, stationery, and packaging.'
+      uz: 'Mijozlar, hamkorlar va jamoangiz uchun brendlangan sovg‘alar. Yoqimli taassurot qoldiradigan va esda qoladigan mahsulotlarni yaratamiz.',
+      ru: 'Брендированные подарки для клиентов, партнёров и команды. Создаём вещи, которые приятно дарить и легко запомнить.',
+      en: 'Branded gifts for clients, partners, and your team. We create memorable products that leave a lasting impression.'
     },
-    badge: { uz: 'Total Look', ru: 'Total Look', en: 'Total Look' }
+    images: [
+      'assets/sovga/20230620_120830.jpg',
+      'assets/sovga/20231028_180424.jpg',
+      'assets/sovga/20231220_173138.jpg',
+      'assets/sovga/20231222_050629.jpg',
+      'assets/sovga/20231224_144504.jpg',
+      'assets/sovga/20240128_212930.jpg',
+      'assets/sovga/IMG_20231109_114129_870.jpg',
+      'assets/sovga/IMG_20240614_150806_780.jpg',
+      'assets/sovga/IMG_20240614_150913_552.jpg',
+      'assets/sovga/photo_2025-06-10_17-56-57.jpg',
+      'assets/sovga/photo_2026-01-23_18-49-12.jpg',
+      'assets/sovga/photo_2026-01-23_18-49-21.jpg'
+    ]
   },
   {
-    id: 'flyers-mockup',
-    categoryKey: 'print',
+    id: 'tashqi-reklama',
     title: {
-      uz: 'Reklama Flayerlari & Evro-Bukletlar',
-      ru: 'Рекламные Флаеры и Евробуклеты',
-      en: 'Promotional Flyers & Tri-Fold Brochures'
+      uz: 'Tashqi reklama',
+      ru: 'Наружная реклама',
+      en: 'Outdoor Advertising'
     },
-    category: {
-      uz: 'Reklama Poligrafiyasi',
-      ru: 'Рекламная полиграфия',
-      en: 'Commercial Print'
-    },
-    image: 'assets/branded-flyers.jpg',
-    size: 'wide',
     description: {
-      uz: 'Yorqin bo‘rli qog‘ozda chop etilgan 3 qatlamli evro-bukletlar va A5 formatdagi aksiyalar flayerlari.',
-      ru: 'Глянцевые евробуклеты в 3 сложения и яркие флаеры формата А5 для презентаций и выставок.',
-      en: 'Glossy tri-fold brochures and promotional A5 flyers with rich saturation and razor-sharp text.'
+      uz: 'Peshlavhalar, bannerlar, hajmli harflar va reklama konstruksiyalari — brendingizni kerakli joyda yanada ko‘rinadigan qilamiz.',
+      ru: 'Вывески, баннеры, объёмные буквы и рекламные конструкции — делаем ваш бреnd заметным там, где его должны увидеть.',
+      en: 'Signboards, banners, 3D channel letters, and ad structures — making your brand prominent right where it needs to be seen.'
     },
-    badge: { uz: 'Evro-Buklet', ru: 'Евробуклет', en: 'Tri-Fold' }
+    images: [
+      'assets/tashqi reklama/IMG_0424.mp4',
+      'assets/tashqi reklama/20240617_224018.jpg',
+      'assets/tashqi reklama/photo_2023-06-04_22-47-31.jpg',
+      'assets/tashqi reklama/photo_2025-10-14_14-01-01.jpg',
+      'assets/tashqi reklama/photo_2025-10-14_14-16-02.jpg',
+      'assets/tashqi reklama/photo_2025-12-13_14-38-09.jpg',
+      'assets/tashqi reklama/photo_2025-12-13_14-38-10.jpg',
+      'assets/tashqi reklama/photo_2026-04-21_17-01-00.jpg',
+      'assets/tashqi reklama/photo_2026-04-29_14-51-00.jpg',
+      'assets/tashqi reklama/photo_2026-05-11_13-54-19.jpg',
+      'assets/tashqi reklama/photo_2026-05-19_18-10-10.jpg',
+      'assets/tashqi reklama/photo_2026-06-13_11-08-54.jpg',
+      'assets/tashqi reklama/photo_2026-07-11_18-07-42.jpg',
+      'assets/tashqi reklama/photo_2026-07-11_18-07-42 (2).jpg',
+      'assets/tashqi reklama/photo_2026-07-11_18-09-03.jpg',
+      'assets/tashqi reklama/photo_2026-07-11_18-09-03 (2).jpg',
+      'assets/tashqi reklama/photo_2026-07-20_15-42-45.jpg'
+    ]
   },
   {
-    id: 'cap-mockup',
-    categoryKey: 'textile',
+    id: 'korporativ-brending',
     title: {
-      uz: 'SHADES Kashtali Brend Kepkalar',
-      ru: 'Фирменные Бейсболки с Вышивкой',
-      en: 'Custom Embroidered Baseball Caps'
+      uz: 'Korporativ brending',
+      ru: 'Корпоративный брендинг',
+      en: 'Corporate Branding'
     },
-    category: {
-      uz: 'Bosh Kiyimlar',
-      ru: 'Головные уборы',
-      en: 'Headwear & Caps'
-    },
-    image: 'assets/branded-cap.jpg',
-    size: 'normal',
     description: {
-      uz: 'To‘q ko‘k 100% paxtali premium kepkaga to‘q sariq qavariq 3D kashta (vishivka) tushirilgan namuna.',
-      ru: 'Плотный хлопковый твил с объемной 3D-вышивкой оранжевого логотипа SHADES на лобной части.',
-      en: 'Heavyweight cotton twill cap customized with tactile 3D puff embroidery and structured fit.'
+      uz: 'Kompaniyaning yagona vizual qiyofasini yaratamiz — alohida elementlardan tortib makon va kommunikatsiyalarni to‘liq brendlashgacha.',
+      ru: 'Создаём единый визуальный образ компании — от отдельных элементов до полного оформления пространства и коммуникаций.',
+      en: 'We create a unified visual identity for companies — from individual elements to complete spatial and brand communication design.'
     },
-    badge: { uz: '3D Kashta', ru: '3D Вышивка', en: '3D Embroidery' }
+    images: [
+      'assets/korporativ brending/20230422_134439.jpg',
+      'assets/korporativ brending/20231021_113816.jpg',
+      'assets/korporativ brending/20231021_113819.jpg',
+      'assets/korporativ brending/20231021_113829.jpg',
+      'assets/korporativ brending/photo_2023-12-20_21-49-06.jpg',
+      'assets/korporativ brending/photo_2025-09-03_17-43-25.jpg',
+      'assets/korporativ brending/photo_2026-05-06_17-30-47.jpg'
+    ]
   },
   {
-    id: 'badge-mockup',
-    categoryKey: 'souvenir',
+    id: 'trikotaj',
     title: {
-      uz: 'Korporativ Beyjik & Lenta To‘plami',
-      ru: 'Корпоративные Бейджи с Ланъярдом',
-      en: 'Executive Badge & Lanyard Kit'
+      uz: 'Trikotaj',
+      ru: 'Трикотаж',
+      en: 'Branded Apparel & Textiles'
     },
-    category: {
-      uz: 'Aksessuarlar & Merch',
-      ru: 'Аксессуары и Мерч',
-      en: 'Corporate Accessories'
-    },
-    image: 'assets/branded-badge.jpg',
-    size: 'normal',
     description: {
-      uz: 'Shaffof akril korpusli xodimlar beyjigi va logotip tushirilgan qulay to‘q ko‘k bo‘yin lentasi.',
-      ru: 'Акриловый бейдж с голографической защитой и брендированная лента на шею с металлическим карабином.',
-      en: 'Clear acrylic card holder paired with custom woven dark navy neck lanyard featuring vibrant logos.'
+      uz: 'Futbolkalar, xudilar, pololar va boshqa kiyimlar — brendingiz bilan. Qulay kiyimlar brendingizning ajralmas qismiga aylanadi.',
+      ru: 'Футболки, худи, поло и другая одежда с вашим брендингом. Комфортная одежда, которая становится частью вашего бренда.',
+      en: 'T-shirts, hoodies, polo shirts, and custom apparel with your branding. Comfortable garments that become a seamless part of your brand.'
     },
-    badge: { uz: 'Akril & Lenta', ru: 'Акрил и Лента', en: 'ID Badge Kit' }
+    images: [
+      'assets/trikotaj/14101.30_2_1000x1000 (1).jpg',
+      'assets/trikotaj/333.png',
+      'assets/trikotaj/f39c890accbf07571ac9b6061c9604b1 (2).jpg',
+      'assets/trikotaj/photo_2025-10-18_17-55-07.jpg',
+      'assets/trikotaj/rakhmanov oq.png'
+    ]
   },
   {
-    id: 'calendar-mockup',
-    categoryKey: 'print',
+    id: 'avtobrending',
     title: {
-      uz: 'Ofis Stol Kalendari (Spiral Muqovali)',
-      ru: 'Фирменный Настольный Календарь',
-      en: 'Corporate Spiral Desk Calendar'
+      uz: 'Avtobrending',
+      ru: 'Автобрендинг',
+      en: 'Vehicle Branding'
     },
-    category: {
-      uz: 'Kalendarlar',
-      ru: 'Календарная продукция',
-      en: 'Desk Stationery'
-    },
-    image: 'assets/branded-calendar.jpg',
-    size: 'normal',
     description: {
-      uz: 'Metall prujinali, qattiq taglikli, to‘q rangli sahifalar va to‘q sariq aksentli korporativ stol kalendari.',
-      ru: 'Перекидной настольный календарь на металлической пружине в фирменной темной стилистике с оранжевыми датами.',
-      en: 'Twin-wire bound tent desk calendar styled with deep navy sheets and bold pumpkin date grid highlights.'
+      uz: 'Avtomobillar va korporativ transportni brendlaymiz, har bir yo‘lni brendingiz haqida gapirish imkoniyatiga aylantiramiz.',
+      ru: 'Брендируем автомобили и корпоративный транспорт, превращая каждый маршрут в возможность рассказать о вашем бренде.',
+      en: 'We brand cars and commercial transport, turning every journey into an opportunity to showcase your brand.'
     },
-    badge: { uz: 'Stol Kalendari', ru: 'Настольный', en: 'Desk Calendar' }
-  },
-  {
-    id: 'workshop-view',
-    categoryKey: 'all',
-    title: {
-      uz: 'SHADES Bosmaxona Jarayoni',
-      ru: 'Производство SHADES',
-      en: 'SHADES Production Lab'
-    },
-    category: {
-      uz: 'Ustaxona',
-      ru: 'Производство',
-      en: 'In-House Studio'
-    },
-    image: 'assets/workshop.jpg',
-    size: 'normal',
-    description: {
-      uz: 'Zamonaviy Yaponiya va Germaniya uskunalarida buyurtmalarni aniq va o‘z vaqtida bajarish.',
-      ru: 'Высокоточное японское и немецкое печатное оборудование для идеальных тиражей.',
-      en: 'Cutting-edge Japanese and German digital printing machinery calibrated for accuracy.'
-    },
-    badge: { uz: 'Haqiqiy Sex', ru: 'Собственный цех', en: 'In-House' }
+    images: [
+      'assets/avtobrending/photo_2024-10-23_16-32-17.jpg',
+      'assets/avtobrending/photo_2024-10-23_16-32-17 (2).jpg',
+      'assets/avtobrending/photo_2025-10-23_17-00-53.jpg',
+      'assets/avtobrending/photo_2025-10-23_17-00-54.jpg',
+      'assets/avtobrending/photo_2026-07-14_19-35-52.jpg',
+      'assets/avtobrending/photo_2026-07-14_20-58-48.jpg',
+      'assets/avtobrending/photo_2026-07-16_11-17-53.jpg',
+      'assets/avtobrending/photo_2026-07-16_11-17-53 (2).jpg'
+    ]
   }
 ];
 
@@ -623,9 +560,9 @@ export const PROCESS_STEPS: ProcessStep[] = [
     step: '02',
     iconKey: 'palette',
     title: {
-      uz: 'Maket va Tasdiqlash',
-      ru: 'Макет и Согласование',
-      en: 'Proofing & Approval'
+      uz: 'Maket dizayni',
+      ru: 'Дизайн макета',
+      en: 'Layout & Design'
     },
     desc: {
       uz: 'Dizayningizni bosmaga tayyorlaymiz yoki yangi maket chizamiz. Ranglar va joylashuvni to‘liq tasdiqlaysiz.',
@@ -638,29 +575,29 @@ export const PROCESS_STEPS: ProcessStep[] = [
     step: '03',
     iconKey: 'cpu',
     title: {
-      uz: 'Bosish va Ishlab Chiqarish',
-      ru: 'Печать и Производство',
-      en: 'Print & Fabrication'
+      uz: 'Ishlab chiqarish',
+      ru: 'Производство',
+      en: 'Production'
     },
     desc: {
       uz: 'Zamonaviy uskunalarimizda har bir nusxa sifat nazoratidan o‘tib, aniq vaqtida chop etiladi.',
       ru: 'Запуск тиража на современном оборудовании со строгим контролем каждого экземпляра.',
       en: 'Your batch goes to press on advanced machinery with strict quality verification at each stage.'
     },
-    duration: { uz: '1-3 kun', ru: '1-3 дня', en: '1-3 days' }
+    duration: { uz: '1-7 kun', ru: '1-7 дней', en: '1-7 days' }
   },
   {
     step: '04',
     iconKey: 'truck',
     title: {
-      uz: 'Qadoqlash va Yetkazish',
-      ru: 'Упаковка и Доставка',
-      en: 'Packaging & Delivery'
+      uz: 'Yetkazish',
+      ru: 'Доставка',
+      en: 'Delivery'
     },
     desc: {
-      uz: 'Tayyor mahsulotlarni ehtiyotkorlik bilan qadoqlaymiz va Toshkent bo‘ylab manzilga yetkazib beramiz.',
-      ru: 'Аккуратно упаковываем готовую продукцию и доставляем прямо в ваш офис или домой.',
-      en: 'Securely boxed and delivered directly to your doorstep across Tashkent.'
+      uz: "O'zbekiston bo'ylab yetkazib berish xizmatlari orqali yetkaziladi.",
+      ru: 'Доставка по всему Узбекистану через надежные службы доставки.',
+      en: 'Delivered across Uzbekistan through reliable delivery services.'
     },
     duration: { uz: 'Tezkor', ru: 'Оперативно', en: 'Prompt' }
   }
@@ -676,9 +613,9 @@ export const ADVANTAGES: AdvantageItem[] = [
       en: '100% Quality Assurance'
     },
     desc: {
-      uz: 'Har bir buyurtma texnik nazoratdan o‘tadi. Yaroqsiz mahsulotga darhol almashtirib berish kafolati bor.',
-      ru: 'Контроль брака на всех этапах. Перепечатка за наш счет в случае производственного дефекта.',
-      en: 'Every item passes rigorous QC. Any defect is reprinted immediately without hesitation.'
+      uz: 'Har bir buyurtma texnik nazoratdan o‘tadi. Yaroqsiz mahsulotni darhol almashtirib berish kafolati bor.',
+      ru: 'Контроль брака на всех этапах. Перепечатка или замена за наш счет в случае любого дефекта.',
+      en: 'Every item passes rigorous QC. Any defect is replaced immediately without hesitation.'
     }
   },
   {
@@ -715,9 +652,9 @@ export const ADVANTAGES: AdvantageItem[] = [
       en: 'Direct Pricing & Flexibility'
     },
     desc: {
-      uz: 'O‘z ustaxonamiz sababli ortiqcha vositachilarsiz narxlar va doimiy mijozlarga moslashuvchan chegirmalar.',
-      ru: 'Собственное производство без посредников и гибкая система скидок для постоянных партнеров.',
-      en: 'Direct in-house pricing with no middleman markups, plus tiered discounts for loyal partners.'
+      uz: 'Optimal narxlar va doimiy mijozlarga moslashuvchan chegirmalar.',
+      ru: 'Оптимальные цены и гибкая система скидок для постоянных клиентов.',
+      en: 'Optimal pricing and flexible discounts for regular customers.'
     }
   }
 ];
@@ -739,9 +676,9 @@ export const FAQS: FaqItem[] = [
       en: 'What is the minimum order quantity?'
     },
     answer: {
-      uz: 'Futbolkalar va kiyimlarga bosma 1 donadan boshlanadi. Vizitkalar minimal 100 dona, flayerlar 500 dona, krujkalar 10 dona, daftarlar esa 50 donadan buyurtma qilinishi mumkin.',
-      ru: 'Печать на футболках и худи возможна от 1 штуки. Визитки от 100 шт, флаеры от 500 шт, кружки от 10 шт, блокноты от 50 шт.',
-      en: 'Apparel printing starts at just 1 piece. Business cards start at 100 pcs, flyers at 500 pcs, mugs at 10 pcs, and notebooks at 50 pcs.'
+      uz: 'Trikotaj mahsulotlari 10 tadan. Vizitka, papka, paket, bloknot va ruchkalar 100 tadan. Flayer, buklet, doorhanger 1000 tadan. Sovg‘a to‘plamlari 10 tadan.',
+      ru: 'Трикотажные изделия от 10 шт. Визитки, папки, пакеты, блокноты и ручки от 100 шт. Флаеры, буклеты, дорхенгеры от 1000 шт. Подарочные наборы от 10 шт.',
+      en: 'Apparel items from 10 pcs. Business cards, folders, bags, notepads, and pens from 100 pcs. Flyers, brochures, and door hangers from 1,000 pcs. Gift sets from 10 pcs.'
     }
   },
   {
@@ -751,9 +688,9 @@ export const FAQS: FaqItem[] = [
       en: 'How long does production take?'
     },
     answer: {
-      uz: 'Oddiy raqamli bosma va futbolkalar 1-2 ish kunida tayyor bo‘ladi. Katta hajmdagi ofset yoki murakkab suvenirlar 3-5 ish kunini tashkil qiladi. Shoshilinch buyurtmalar 24 soatda topshirilishi mumkin.',
-      ru: 'Стандартный срок для цифровой печати и текстиля — 1-2 рабочих дня. Сложные сувениры и офсетные тиражи — 3-5 дней. Доступен срочный заказ за 24 часа.',
-      en: 'Standard digital prints and apparel take 1-2 business days. Complex souvenir batches or offset runs take 3-5 days. 24-hour rush service is also available.'
+      uz: 'Oddiy raqamli bosma va futbolkalar 3-5 ish kunida tayyor bo‘ladi. Katta hajmdagi ofset yoki murakkab suvenirlar 5-7 ish kunini tashkil qiladi. Shoshilinch buyurtmalar 24 soatda topshirilishi mumkin.',
+      ru: 'Стандартная цифровая печать и футболки готовы за 3-5 рабочих дней. Крупные офсетные тиражи или сложные сувениры занимают 5-7 рабочих дней. Срочные заказы могут быть выполнены за 24 часа.',
+      en: 'Standard digital printing and apparel are ready in 3-5 business days. Large offset batches or complex souvenirs take 5-7 business days. Rush orders can be completed in 24 hours.'
     }
   },
   {
@@ -787,9 +724,9 @@ export const FAQS: FaqItem[] = [
       en: 'What payment methods do you accept?'
     },
     answer: {
-      uz: 'Barcha qulay to‘lov usullari mavjud: Click, Payme, Uzum, korporativ mijozlar uchun hisob-raqam orqali shartnoma bilan pul o‘tkazish (perechisleniye) va naqd pul.',
-      ru: 'Любые удобные способы: Click, Payme, Uzum, безналичный расчет с НДС/без НДС по договору для компаний, а также наличными.',
-      en: 'We accept Click, Payme, Uzum Bank, corporate bank wire transfers under contract, and cash.'
+      uz: 'Barcha qulay to‘lov usullari mavjud: Online to‘lov sistemalari, karta orqali, korporativ mijozlar uchun hisob-raqam orqali shartnoma bilan pul o‘tkazish (perechisleniye) va naqd pul.',
+      ru: 'Все удобные способы оплаты: онлайн платежные системы, банковские карты, безналичный расчет по договору для корпоративных клиентов (перечисление) и наличный расчет.',
+      en: 'All convenient payment methods are available: online payment systems, bank cards, corporate bank wire transfers under contract (invoicing), and cash.'
     }
   },
   {

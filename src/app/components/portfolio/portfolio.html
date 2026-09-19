@@ -6,33 +6,88 @@
       <p class="section__sub">{{ ui.portfolioSection.subtitle[ts.currentLang()] }}</p>
     </div>
 
-    <!-- Luxury Bento Grid (zd.uz inspired) -->
+    <!-- Modern Portfolio Cards Grid -->
     <div class="portfolio__grid">
       <article
         *ngFor="let item of items; let i = index"
         class="portfolio__card reveal"
         [ngClass]="'portfolio__card--' + item.id"
-        [class]="'reveal-delay-' + ((i % 4) + 1)"
+        [class]="'reveal-delay-' + ((i % 3) + 1)"
       >
-        <div class="portfolio__img-box">
-          <img [src]="item.image" [alt]="item.title[ts.currentLang()]" loading="lazy" />
+        <!-- Interactive Image Carousel -->
+        <div class="portfolio__carousel"
+             (touchstart)="onTouchStart($event)"
+             (touchend)="onTouchEnd($event, item.id, item.images.length)">
+          
+          <div class="carousel__track" [style.transform]="'translateX(-' + (getIndex(item.id) * 100) + '%)'">
+            <div *ngFor="let media of item.images; let imgIdx = index" 
+                 class="carousel__slide"
+                 (click)="openLightbox(item, imgIdx, $event)"
+                 title="To'liq o'lchamda ko'rish">
+              <video *ngIf="isVideo(media)"
+                     [src]="media"
+                     autoplay
+                     loop
+                     muted
+                     playsinline
+                     preload="auto"
+                     class="carousel__video"></video>
+              <img *ngIf="!isVideo(media)"
+                   [src]="media" 
+                   [alt]="item.title[ts.currentLang()]" 
+                   loading="lazy" />
+              <div class="carousel__zoom-hint">
+                <app-icon name="arrowUpRight"></app-icon>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Chevrons -->
+          <button type="button" 
+                  class="carousel__nav carousel__nav--prev" 
+                  *ngIf="item.images.length > 1"
+                  (click)="prevSlide(item.id, item.images.length, $event)" 
+                  aria-label="Previous image">
+            <app-icon name="chevronLeft"></app-icon>
+          </button>
+          <button type="button" 
+                  class="carousel__nav carousel__nav--next" 
+                  *ngIf="item.images.length > 1"
+                  (click)="nextSlide(item.id, item.images.length, $event)" 
+                  aria-label="Next image">
+            <app-icon name="chevronRight"></app-icon>
+          </button>
+
+          <!-- Slide Counter (Pill) -->
+          <div class="carousel__counter" *ngIf="item.images.length > 1">
+            <span>{{ getIndex(item.id) + 1 }}</span> / <span>{{ item.images.length }}</span>
+          </div>
+
+          <!-- Pagination Dots (Clickable) -->
+          <div class="carousel__dots" *ngIf="item.images.length > 1">
+            <button *ngFor="let img of item.images; let dotIdx = index"
+                    type="button"
+                    class="carousel__dot"
+                    [class.is-active]="getIndex(item.id) === dotIdx"
+                    (click)="setSlide(item.id, dotIdx, $event)"
+                    [attr.aria-label]="'Slide ' + (dotIdx + 1)">
+            </button>
+          </div>
         </div>
 
-        <!-- Floating Glass Pill Badge (Top Left) -->
-        <span class="portfolio__badge">
-          {{ item.badge[ts.currentLang()] }}
-        </span>
+        <!-- Card Content: Title, Description & Action -->
+        <div class="portfolio__content">
+          <div class="portfolio__text">
+            <h3 class="portfolio__title">{{ item.title[ts.currentLang()] }}</h3>
+            <p class="portfolio__desc">{{ item.description[ts.currentLang()] }}</p>
+          </div>
 
-        <!-- Floating Circle Arrow (Top Right) -->
-        <a [href]="catalogUrl" target="_blank" rel="noopener" class="portfolio__arrow-btn" aria-label="View Project">
-          <app-icon name="arrowUpRight"></app-icon>
-        </a>
-
-        <!-- Dark Gradient Vignette & Editorial Typography (Bottom) -->
-        <div class="portfolio__caption">
-          <span class="portfolio__category">{{ item.category[ts.currentLang()] }}</span>
-          <h3 class="portfolio__title">{{ item.title[ts.currentLang()] }}</h3>
-          <p class="portfolio__desc">{{ item.description[ts.currentLang()] }}</p>
+          <div class="portfolio__action">
+            <a [href]="catalogUrl" target="_blank" rel="noopener" class="portfolio__link">
+              <span>{{ ui.portfolioSection.viewSamplesBtn[ts.currentLang()] }}</span>
+              <app-icon name="arrowUpRight"></app-icon>
+            </a>
+          </div>
         </div>
       </article>
     </div>
@@ -43,6 +98,69 @@
         <span>{{ ui.portfolioSection.viewAllBtn[ts.currentLang()] }}</span>
         <app-icon name="arrowRight"></app-icon>
       </a>
+    </div>
+  </div>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox" *ngIf="lightboxOpen()" (click)="closeLightbox()">
+    <div class="lightbox__backdrop"></div>
+    
+    <div class="lightbox__dialog" (click)="$event.stopPropagation()">
+      <!-- Header -->
+      <div class="lightbox__header">
+        <div class="lightbox__meta" *ngIf="lightboxTitle()">
+          <h4 class="lightbox__title">{{ lightboxTitle()![ts.currentLang()] }}</h4>
+          <span class="lightbox__counter">{{ lightboxIndex() + 1 }} / {{ lightboxImages().length }}</span>
+        </div>
+        <button type="button" class="lightbox__close-btn" (click)="closeLightbox()" aria-label="Close lightbox">
+          <app-icon name="close"></app-icon>
+        </button>
+      </div>
+
+      <!-- Main Viewport -->
+      <div class="lightbox__viewport">
+        <button type="button" 
+                class="lightbox__nav-btn lightbox__nav-btn--prev" 
+                *ngIf="lightboxImages().length > 1"
+                (click)="lightboxPrev($event)" 
+                aria-label="Previous image">
+          <app-icon name="chevronLeft"></app-icon>
+        </button>
+
+        <div class="lightbox__image-box">
+          <video *ngIf="isVideo(lightboxImages()[lightboxIndex()])"
+                 [src]="lightboxImages()[lightboxIndex()]" 
+                 autoplay
+                 loop
+                 muted
+                 playsinline
+                 class="lightbox__main-video"></video>
+          <img *ngIf="!isVideo(lightboxImages()[lightboxIndex()])"
+               [src]="lightboxImages()[lightboxIndex()]" 
+               [alt]="lightboxTitle() ? lightboxTitle()![ts.currentLang()] : 'Portfolio sample'" 
+               class="lightbox__main-image" />
+        </div>
+
+        <button type="button" 
+                class="lightbox__nav-btn lightbox__nav-btn--next" 
+                *ngIf="lightboxImages().length > 1"
+                (click)="lightboxNext($event)" 
+                aria-label="Next image">
+          <app-icon name="chevronRight"></app-icon>
+        </button>
+      </div>
+
+      <!-- Thumbnails Strip -->
+      <div class="lightbox__thumbs" *ngIf="lightboxImages().length > 1">
+        <button *ngFor="let thumb of lightboxImages(); let tIdx = index"
+                type="button"
+                class="lightbox__thumb-btn"
+                [class.is-active]="lightboxIndex() === tIdx"
+                (click)="lightboxIndex.set(tIdx)">
+          <video *ngIf="isVideo(thumb)" [src]="thumb" muted class="thumb__video"></video>
+          <img *ngIf="!isVideo(thumb)" [src]="thumb" alt="Thumbnail" loading="lazy" />
+        </button>
+      </div>
     </div>
   </div>
 </section>

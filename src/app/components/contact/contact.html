@@ -30,6 +30,16 @@
             </div>
           </a>
 
+          <a [href]="'mailto:' + contact.email" class="contact__row">
+            <div class="contact__icon">
+              <app-icon name="mail"></app-icon>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>{{ contact.email }}</span>
+            </div>
+          </a>
+
           <a [href]="contact.instagramUrl" target="_blank" rel="noopener" class="contact__row">
             <div class="contact__icon">
               <app-icon name="instagram"></app-icon>
@@ -64,14 +74,15 @@
           </a>
         </div>
 
-        <!-- Workshop Preview -->
-        <div class="contact__visual">
+        <!-- Workshop Preview (Links to Instagram) -->
+        <a [href]="contact.instagramUrl" target="_blank" rel="noopener" class="contact__visual" aria-label="SHADES Instagram">
           <img src="assets/workshop.jpg" alt="SHADES Printing Studio" loading="lazy" />
           <div class="visual__tag">
-            <app-icon name="zap"></app-icon>
+            <app-icon name="instagram"></app-icon>
             <span>Toshkent, SHADES Ustaxonasi</span>
+            <app-icon name="arrowUpRight"></app-icon>
           </div>
-        </div>
+        </a>
       </div>
 
       <!-- Right: Direct Order Form -->
