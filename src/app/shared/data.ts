@@ -485,6 +485,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
       en: 'We create a unified visual identity for companies — from individual elements to complete spatial and brand communication design.'
     },
     images: [
+      'assets/korporativ brending/photo_2026-09-20_korporativ-set.jpg',
       'assets/korporativ brending/20230422_134439.jpg',
       'assets/korporativ brending/20231021_113816.jpg',
       'assets/korporativ brending/20231021_113819.jpg',
