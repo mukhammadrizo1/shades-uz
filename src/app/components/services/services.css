@@ -92,16 +92,6 @@
   color: var(--clr-pumpkin-light);
 }
 
-.service-card__tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--clr-pumpkin);
-  background: rgba(232, 122, 32, 0.1);
-  border: 1px solid rgba(232, 122, 32, 0.25);
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-pill);
-}
-
 /* Typography */
 .service-card__title {
   font-family: var(--ff-display);
